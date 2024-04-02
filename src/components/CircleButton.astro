@@ -1,0 +1,61 @@
+---
+
+---
+
+<div id="question-btn">
+  <button>
+    <i class="fa fa-question" aria-hidden="true"></i>
+  </button>
+</div>
+
+<style>
+  #question-btn {
+    position: fixed;
+    bottom: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    z-index: 999; /* Ensure it's above other content */
+  }
+
+  #question-btn button {
+    width: 60px; /* Adjust as needed */
+    height: 60px; /* Adjust as needed */
+    background-color: #007bff; /* Change color as needed */
+    border: none;
+    border-radius: 50%;
+    font-size: 24px; /* Adjust icon size */
+    color: white; /* Change color as needed */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Elevation effect */
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s; /* Transition for hover and click effects */
+  }
+
+  #question-btn button:hover {
+    transform: translateY(-3px); /* Lift on hover */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Adjusted elevation effect */
+  }
+  #question-btn button:active {
+    transform: translateY(0); /* Press effect */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adjusted elevation effect */
+  }
+
+  #question-btn button i {
+    margin-top: 50%;
+    transform: translateY(-50%);
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    document
+      .getElementById("question-btn")
+      .addEventListener("click", function () {
+        var chatBox = document.getElementById("chatBox");
+        if (chatBox.style.display === "none") {
+          chatBox.style.display = "flex";
+        } else {
+          chatBox.style.display = "none";
+        }
+      });
+  });
+</script>

@@ -1,0 +1,52 @@
+---
+const { sourceUrl, title, description, image, alt, pubDate } = Astro.props;
+---
+
+<li>
+  <a href={sourceUrl}>
+    <div class="card">
+      <img
+        src={image}
+        alt={alt}
+        style="width: 200px; height: 100px; padding-left: 8px;`"
+      />
+      <div class="container">
+        <h4 class="child">
+          <b>{title}</b>
+        </h4>
+        <p class="child">
+          {description}
+        </p>
+        <p class="child">{pubDate.toString().slice(0, 10)}</p>
+      </div>
+    </div>
+  </a>
+</li>
+
+<style>
+  li a {
+    text-decoration: none;
+    color: rgb(54, 51, 51);
+    font: 1em sans-serif;
+  }
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    margin: 16px 0px;
+    padding: 8px 8px;
+    display: flex;
+    align-items: center;
+  }
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content; /* or min-content if you prefer */
+  }
+  .child {
+    flex-grow: 1;
+    margin: 4px 16px;
+  }
+</style>

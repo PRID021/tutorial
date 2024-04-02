@@ -1,6 +1,12 @@
 import { defineConfig } from 'astro/config';
 
+import preact from "@astrojs/preact";
+
 // https://astro.build/config
 export default defineConfig({
-    server: { port: 8080 }
+  server: {
+    port: 3000
+  },
+  site: "https://hoang-pham.netlify.app/",
+  integrations: [preact()]
 });
