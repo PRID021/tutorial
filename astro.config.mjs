@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
-
-import preact from "@astrojs/preact";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,5 +7,5 @@ export default defineConfig({
     port: 3000
   },
   site: "https://hoang-pham.netlify.app/",
-  integrations: [preact()]
+  integrations: [react()]
 });

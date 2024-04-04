@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import { ViewTransitions } from "astro:transitions";
 import CircleButton from "../components/CircleButton.astro";
-import ChatBox from "../components/ChatBox.astro";
+import ChatBox from "../components/ChatBox.jsx";
 
 const { pageTitle } = Astro.props;
 ---
@@ -27,10 +27,15 @@ const { pageTitle } = Astro.props;
     <h1 transition:animate="slide">{pageTitle}</h1>
     <slot />
     <CircleButton />
-    <ChatBox />
+    <ChatBox client:load />
     <Footer />
     <script>
       import "../scripts/menu.js";
     </script>
+    <style>
+      .html {
+        min-width: 400px;
+      }
+    </style>
   </body>
 </html>
