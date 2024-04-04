@@ -9,23 +9,7 @@ const ChatBox = () => {
   const [userInput, setUserInput] = useState("");
   const scrollRef = useRef(null);
 
-  let scrollCapable = true;
-  // Function to scroll the content to the bottom
-  const scrollToBottom = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  };
-
-  useEffect(() => {
-    if (scrollCapable) {
-      scrollToBottom();
-    }
-  }, []);
-
   const handleSendMessage = () => {
-    scrollCapable = true;
-    console.log(`handleSendMessage ${userInput}`);
     let userInputContent = userInput.trim();
     if (userInputContent !== "") {
       messagesCounter += 1;
@@ -115,13 +99,13 @@ const ChatBox = () => {
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "column-reverse",
           flex: 1 /* Takes remaining space */,
           overflowY: "auto" /* Enable scrolling if messages overflow */,
         }}
         ref={scrollRef}
       >
-        {messages.map((message) => (
+        {[...messages].reverse().map((message) => (
           <div
             key={message.id}
             style={{
@@ -129,26 +113,25 @@ const ChatBox = () => {
               margin: "4px 0",
             }}
           >
-            <div
+            <i
               style={{
                 width: 40,
                 height: 40,
                 fontSize: 24,
                 color: "#555",
                 borderRadius: "50%",
+                padding: "8px",
               }}
-            >
-              <i
-                className={
-                  message.role === "hu" ? "fas fa-user" : "fas fa-rocket"
-                }
-              ></i>
-            </div>
+              className={
+                message.role === "hu" ? "fas fa-user" : "fas fa-rocket"
+              }
+            ></i>
+
             <div
               style={{
                 background: "#f1f1f1",
-                padding: "8px",
                 borderRadius: 10,
+                padding: "8px",
               }}
             >
               <Markdown
