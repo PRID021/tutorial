@@ -129,9 +129,9 @@ const ChatBox = () => {
 
             <div
               style={{
-                background: "#f1f1f1",
+                background: "#fff",
                 borderRadius: 10,
-                padding: "8px",
+                padding: "24px",
               }}
             >
               <Markdown
