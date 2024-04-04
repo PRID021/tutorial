@@ -26,9 +26,13 @@ const { sourceUrl, title, description, image, alt, pubDate } = Astro.props;
 <style>
   li a {
     text-decoration: none;
-    color: rgb(54, 51, 51);
     font: 1em sans-serif;
   }
+
+  :global(.dark) a {
+    color: #fff;
+  }
+
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
@@ -36,6 +40,10 @@ const { sourceUrl, title, description, image, alt, pubDate } = Astro.props;
     padding: 8px 8px;
     display: flex;
     align-items: center;
+  }
+  :global(.dark) .card {
+    box-shadow: 0 8px 16px 0 rgba(56, 44, 44, 0.2);
+    background-color: rgb(34, 33, 33);
   }
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);

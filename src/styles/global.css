@@ -1,22 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 html {
-    background-color: #f1f5f9;
+    background-color: #fff;
     font-family: sans-serif;
+    min-width: 400px;
 }
 html.dark {
-    background-color: #0d0950;
+    background-color: #1A1B1E;
     color: #fff;
-  }
-  
-.dark .nav-links a {
-color: #fff;
 }
 
-body {
-    margin: 0 auto;
-    width: 100%;
-    max-width: 80ch;
+
+body .container {
+    margin: auto;
     padding: 1rem;
+    width: 100%;
+    max-width: 960px;
     line-height: 1.5;
+    display: flex;
+    flex-direction: column;
 }
 
 * {
@@ -28,10 +32,23 @@ h1 {
     font-size: 2.5rem;
 }
 
-/* Nav styles */
+
+
+nav {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark .nav-links a {
+    color: #fff;
+    }
+    
 .hamburger {
     padding-right: 20px;
     cursor: pointer;
+
 }
 
 .hamburger .line {
@@ -67,13 +84,9 @@ h1 {
     background-color: #ff9776;
 }
 
-.expanded {
-    display: unset;
-}
 
 @media screen and (min-width: 636px) {
     .nav-links {
-        margin-left: 5em;
         display: block;
         position: static;
         width: auto;
@@ -82,7 +95,8 @@ h1 {
 
     .nav-links a {
         display: inline-block;
-        padding: 15px 20px;
+        padding: 8px 16px 8px 16px;
+        margin: 0px 32px 0px 0px;
     }
 
     .hamburger {
@@ -100,4 +114,40 @@ h1 {
 
 .dark  .skill {
     color: orangered;
+}
+
+
+
+/* Sidebar */
+
+#sidebar{
+    padding: 0;
+    margin: 0;
+    right: -900px;
+    position: absolute;
+    width: 250px;
+    height: 100%;
+    background-color: black;
+    z-index: 1;
+    transition: .4s;
+    
+}
+
+#sidebar.active {
+    right: 0;
+}
+
+#sidebar ul li {
+    list-style: none;
+    color: white;
+    font-size: 20px;
+    padding: 20px 24px;
+}
+#sidebar ul li  a {
+    text-decoration: none;
+}
+
+#sidebar ul li:hover,
+#sidebar ul li:focus {
+    background-color: #ff9776;
 }

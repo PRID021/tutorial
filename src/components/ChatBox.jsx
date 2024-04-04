@@ -79,12 +79,13 @@ const ChatBox = () => {
     <div
       id="chatBox"
       style={{
-        position: "fixed",
-        bottom: 100 /* Adjust as needed */,
-        right: 100 /* Adjust as needed */,
-        width: "80%" /* Adjust as needed */,
-        height: "80%" /* Adjust as needed */,
-        minWidth: 400,
+        position: "absolute",
+        alignSelf: "center",
+        bottom: 100,
+        padding: 10,
+        width: "80%",
+        // maxHeight: 600,
+        height: "80%",
         margin: "auto",
         backgroundColor: "#ffffff",
         border: "1px solid #ccc",
@@ -92,7 +93,6 @@ const ChatBox = () => {
         borderRadius: 8,
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
         display: "none" /* Initially hidden */,
-        padding: 10,
         flexDirection: "column",
       }}
     >
