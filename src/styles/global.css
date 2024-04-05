@@ -66,6 +66,7 @@ nav {
     background-color: #ff9776;
     display: none;
     margin: 0;
+ 
 }
 
 .nav-links a {
@@ -76,6 +77,7 @@ nav {
     font-size: 1.2rem;
     font-weight: bold;
     text-transform: uppercase;
+    border-radius: 8px;
 }
 
 
@@ -116,38 +118,37 @@ nav {
     color: orangered;
 }
 
+.Card{
+ background: #000;
+ display: flex;
+}
+
+.Card .ParagraphStyle {
+    text-overflow : ellipsis;
+    overflow: hidden;
+}
+
+.Card:hover,
+.Card:focus {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 
 
-/* Sidebar */
 
-#sidebar{
-    padding: 0;
-    margin: 0;
-    right: -900px;
-    position: absolute;
-    width: 250px;
-    height: 100%;
-    background-color: black;
-    z-index: 1;
-    transition: .4s;
+.ChatBoxHeader {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+@media (max-width: 767px) {
+    .Card .ParagraphStyle {
+        white-space:nowrap;
+    }
     
-}
-
-#sidebar.active {
-    right: 0;
-}
-
-#sidebar ul li {
-    list-style: none;
-    color: white;
-    font-size: 20px;
-    padding: 20px 24px;
-}
-#sidebar ul li  a {
-    text-decoration: none;
-}
-
-#sidebar ul li:hover,
-#sidebar ul li:focus {
-    background-color: #ff9776;
-}
+    .ChatBoxHeader {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+    }
+  }

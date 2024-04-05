@@ -1,16 +1,20 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Markdown from "react-markdown";
 import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import ChatBoxHeader from "./ChatBoxHeader";
 
 let messagesCounter = 0;
-const ChatBox = () => {
+const ChatBox = ({ token }) => {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
-  const scrollRef = useRef(null);
+  const [showHeader, setShowHeader] = useState(true);
 
-  const handleSendMessage = () => {
-    let userInputContent = userInput.trim();
+  const handleSendMessage = (value) => {
+    if (showHeader) {
+      setShowHeader(false);
+    }
+    let userInputContent = value ?? userInput.trim();
     if (userInputContent !== "") {
       messagesCounter += 1;
       let huMessage = {
@@ -20,13 +24,16 @@ const ChatBox = () => {
       };
       setUserInput("");
       setMessages([...messages, huMessage]);
-
-      const url = `http://localhost:8080/chat-with-gemi/gemi?message=${userInputContent}`;
-      const options = {
-        method: "GET",
-        responseType: "stream",
-      };
       try {
+        const url = `http://localhost:8080/chat?conversation_id=9&message=${userInputContent}`;
+        const options = {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${token.access_token}`,
+          },
+          responseType: "stream",
+        };
         fetch(url, options).then((response) => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
@@ -78,13 +85,15 @@ const ChatBox = () => {
   return (
     <div
       id="chatBox"
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
       style={{
         position: "absolute",
         alignSelf: "center",
         bottom: 100,
         padding: 10,
         width: "80%",
-        // maxHeight: 600,
         height: "80%",
         margin: "auto",
         backgroundColor: "#ffffff",
@@ -94,8 +103,16 @@ const ChatBox = () => {
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
         display: "none" /* Initially hidden */,
         flexDirection: "column",
+        zIndex: 99999,
       }}
     >
+      {showHeader && (
+        <ChatBoxHeader
+          onTapHeader={(value) => {
+            handleSendMessage(value);
+          }}
+        />
+      )}
       <div
         style={{
           display: "flex",
@@ -103,7 +120,6 @@ const ChatBox = () => {
           flex: 1 /* Takes remaining space */,
           overflowY: "auto" /* Enable scrolling if messages overflow */,
         }}
-        ref={scrollRef}
       >
         {[...messages].reverse().map((message) => (
           <div
@@ -131,31 +147,46 @@ const ChatBox = () => {
               style={{
                 background: "#fff",
                 borderRadius: 10,
-                padding: "24px",
+                paddingLeft: 8,
               }}
             >
-              <Markdown
-                components={{
-                  code({ node, inline, className, children, ...props }) {
-                    const match = /language-(\w+)/.exec(className || "");
-                    return !inline && match ? (
-                      <SyntaxHighlighter
-                        style={materialLight}
-                        PreTag="div"
-                        language={match[1]}
-                        children={String(children).replace(/\n$/, "")}
-                        {...props}
-                      />
-                    ) : (
-                      <code className={className ? className : ""} {...props}>
-                        {children}
-                      </code>
-                    );
-                  },
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "fit-content",
                 }}
               >
-                {message.content}
-              </Markdown>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  {message.role == "hu" ? "You" : "AI"}
+                </p>
+                <Markdown
+                  components={{
+                    code({ node, inline, className, children, ...props }) {
+                      const match = /language-(\w+)/.exec(className || "");
+                      return !inline && match ? (
+                        <SyntaxHighlighter
+                          style={materialLight}
+                          PreTag="div"
+                          language={match[1]}
+                          children={String(children).replace(/\n$/, "")}
+                          {...props}
+                        />
+                      ) : (
+                        <code className={className ? className : ""} {...props}>
+                          {children}
+                        </code>
+                      );
+                    },
+                  }}
+                >
+                  {message.content === "" ? "...." : message.content}
+                </Markdown>
+              </div>
             </div>
           </div>
         ))}

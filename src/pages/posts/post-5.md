@@ -7,7 +7,7 @@ author: "Astro Learner"
 image:
   url: "https://techmaniac649449135.files.wordpress.com/2023/01/code.jpg?w=1568"
   alt: "The full Astro logo."
-tags: ["blogging", "DSA"]
+tags: ["blogging", "dsa"]
 ---
 
 #

@@ -5,8 +5,37 @@ import "../styles/global.css";
 import { ViewTransitions } from "astro:transitions";
 import CircleButton from "../components/CircleButton.astro";
 import ChatBox from "../components/ChatBox.jsx";
+import SideBar from "../components/SideBar.astro";
 
 const { pageTitle } = Astro.props;
+
+let token = await fetch("http://localhost:8080/token", {
+  method: "POST",
+  headers: {
+    accept: "application/json",
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+  body: new URLSearchParams({
+    grant_type: "",
+    username: "admin",
+    password: "secret",
+    scope: "",
+    client_id: "",
+    client_secret: "",
+  }),
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    return data;
+  })
+  .catch((error) => {
+    console.error("There was a problem with your fetch operation:", error);
+  });
 ---
 
 <html>
@@ -22,53 +51,63 @@ const { pageTitle } = Astro.props;
     />
     <ViewTransitions />
   </head>
-  <div id="sidebar">
-    <button id="close-btn" onclick="toggleSideBar()">
-      <i class="fa fa-xmark"></i>
-    </button>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about/" data-astro-reload>About</a></li>
-      <li><a href="/blog/">Blog</a></li>
-      <li><a href="/tags">Tags</a></li>
-    </ul>
-  </div>
+
   <body>
+    <SideBar />
     <div class="container">
       <Header />
-      <h1 transition:animate="slide">{pageTitle}</h1>
-      <slot />
-      <CircleButton />
-      <ChatBox client:load />
-      <Footer />
+      <div id="overlay">
+        <ChatBox client:only token={token} />
+      </div>
+      <div class="page-content">
+        <h1 transition:animate="slide">{pageTitle}</h1>
+        <slot />
+        <CircleButton />
+        <Footer />
+      </div>
     </div>
 
     <script>
       import "../scripts/menu.js";
     </script>
+    <style>
+      #overlay {
+        position: fixed; /* Sit on top of the page content */
+        display: none; /* Hidden by default */
+        width: 100%; /* Full width (cover the whole page) */
+        height: 100%; /* Full height (cover the whole page) */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Black background with opacity */
+        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+        cursor: pointer; /* Add a pointer on hover */
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+      }
+      :global(.dark) #sidebar ul li a {
+        color: white;
+      }
+      .page-content {
+        padding: 16px;
+      }
+      #close-btn {
+        width: 24px;
+        height: 24px;
+        margin: 8px;
+        position: relative;
+        align-self: flex-end;
+      }
+      #close-btn i {
+        color: #000;
+      }
+    </style>
   </body>
-  <script is:inline>
-    function toggleSideBar() {
-      document.getElementById("sidebar").classList.toggle("active");
-    }
-  </script>
-  <style>
-    :global(.dark) #sidebar ul li a {
-      color: white;
-    }
-    #sidebar {
-      display: flex;
-      flex-direction: column;
-    }
-    #close-btn {
-      width: 24px;
-      height: 24px;
-      margin: 8px;
-      position: relative;
-      align-self: flex-end;
-    }
-    #close-btn i {
-      color: #000;
-    }
-  </style>
 </html>
