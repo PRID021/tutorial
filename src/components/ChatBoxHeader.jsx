@@ -2,7 +2,7 @@ import "../styles/global.css";
 import ChatBoxHeaderItem from "./ChatBoxHeaderItem";
 
 const ChatBoxHeader = ({ onTapHeader }) => {
-  const chatHeaderSytle = {
+  const chatHeaderStyle = {
     backgroundColor: "#fff",
     borderRadius: "10px",
     transition: "transform 0.3s ease, box-shadow 0.3s ease", // Add transition for box-shadow
@@ -18,32 +18,32 @@ const ChatBoxHeader = ({ onTapHeader }) => {
   const pStyle = {
     fontWeight: "bold",
     fontSize: 18,
-    lignHeight: 1.8,
+    lineHeight: 1.8,
     justifyContent: "center",
     textAlign: "center",
+    margin: 16,
   };
   return (
-    <div style={chatHeaderSytle}>
+    <div style={chatHeaderStyle}>
       <p style={pStyle}>
-        If you want to known about me, fell free to ask! <br />
-        I'm here to help.
+        Coding Confessions: Unmasking the Developers of Your Chatbox
       </p>
 
       <div className="ChatBoxHeader">
         <ChatBoxHeaderItem
-          content={"The information about the developer!"}
+          content={"The contact information of developer!"}
           onTap={onTapHeader}
         />
         <ChatBoxHeaderItem
-          content={"What work experience the developer have?"}
+          content={"The working experience, the developer have!"}
           onTap={onTapHeader}
         />
         <ChatBoxHeaderItem
-          content={"What current thing's the developer interesting on?"}
+          content={"The current interesting thing the developer focus on!"}
           onTap={onTapHeader}
         />
         <ChatBoxHeaderItem
-          content={"The vision of the developer about future career."}
+          content={"The vision of the developer about future career!"}
           onTap={onTapHeader}
         />
       </div>

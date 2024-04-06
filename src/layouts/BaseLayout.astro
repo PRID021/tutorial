@@ -28,11 +28,9 @@ const { pageTitle } = Astro.props;
   <body>
     <SideBar />
     {pageTitle == "Wellcome to my page" && <ChatSession />}
+    <Header />
     <div class="container">
-      <Header />
-
       <div class="page-content">
-        <h1 transition:animate="slide">{pageTitle}</h1>
         <slot />
         {pageTitle == "Wellcome to my page" && <CircleButton />}
         <Footer />
@@ -43,7 +41,6 @@ const { pageTitle } = Astro.props;
       import "../scripts/menu.js";
     </script>
     <style>
-     
       :global(.dark) #sidebar ul li a {
         color: white;
       }
