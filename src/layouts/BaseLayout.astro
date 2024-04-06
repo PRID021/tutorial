@@ -4,38 +4,11 @@ import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import { ViewTransitions } from "astro:transitions";
 import CircleButton from "../components/CircleButton.astro";
-import ChatBox from "../components/ChatBox.jsx";
+
 import SideBar from "../components/SideBar.astro";
+import ChatSession from "./ChatSession.astro";
 
 const { pageTitle } = Astro.props;
-
-let token = await fetch("http://localhost:8080/token", {
-  method: "POST",
-  headers: {
-    accept: "application/json",
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
-  body: new URLSearchParams({
-    grant_type: "",
-    username: "admin",
-    password: "secret",
-    scope: "",
-    client_id: "",
-    client_secret: "",
-  }),
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  })
-  .then((data) => {
-    return data;
-  })
-  .catch((error) => {
-    console.error("There was a problem with your fetch operation:", error);
-  });
 ---
 
 <html>
@@ -54,15 +27,14 @@ let token = await fetch("http://localhost:8080/token", {
 
   <body>
     <SideBar />
+    {pageTitle == "Wellcome to my page" && <ChatSession />}
     <div class="container">
       <Header />
-      <div id="overlay">
-        <ChatBox client:only token={token} />
-      </div>
+
       <div class="page-content">
         <h1 transition:animate="slide">{pageTitle}</h1>
         <slot />
-        <CircleButton />
+        {pageTitle == "Wellcome to my page" && <CircleButton />}
         <Footer />
       </div>
     </div>
@@ -71,27 +43,7 @@ let token = await fetch("http://localhost:8080/token", {
       import "../scripts/menu.js";
     </script>
     <style>
-      #overlay {
-        position: fixed; /* Sit on top of the page content */
-        display: none; /* Hidden by default */
-        width: 100%; /* Full width (cover the whole page) */
-        height: 100%; /* Full height (cover the whole page) */
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: rgba(
-          0,
-          0,
-          0,
-          0.5
-        ); /* Black background with opacity */
-        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-        cursor: pointer; /* Add a pointer on hover */
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-      }
+     
       :global(.dark) #sidebar ul li a {
         color: white;
       }

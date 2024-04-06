@@ -2,11 +2,13 @@
     margin: 0;
     padding: 0;
 }
+
 html {
     background-color: #fff;
     font-family: sans-serif;
     min-width: 400px;
 }
+
 html.dark {
     background-color: #1A1B1E;
     color: #fff;
@@ -43,8 +45,8 @@ nav {
 
 .dark .nav-links a {
     color: #fff;
-    }
-    
+}
+
 .hamburger {
     padding-right: 20px;
     cursor: pointer;
@@ -66,7 +68,7 @@ nav {
     background-color: #ff9776;
     display: none;
     margin: 0;
- 
+
 }
 
 .nav-links a {
@@ -114,23 +116,23 @@ nav {
     text-transform: capitalize;
 }
 
-.dark  .skill {
+.dark .skill {
     color: orangered;
 }
 
-.Card{
- background: #000;
- display: flex;
+.Card {
+    background: #000;
+    display: flex;
 }
 
 .Card .ParagraphStyle {
-    text-overflow : ellipsis;
+    text-overflow: ellipsis;
     overflow: hidden;
 }
 
 .Card:hover,
 .Card:focus {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 
@@ -138,17 +140,19 @@ nav {
 .ChatBoxHeader {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    width: 100%;
+
 }
 
 
 @media (max-width: 767px) {
     .Card .ParagraphStyle {
-        white-space:nowrap;
+        white-space: nowrap;
     }
-    
+
     .ChatBoxHeader {
-      display: flex;
-      flex-direction: column;
-      margin: 10px;
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
     }
-  }
+}

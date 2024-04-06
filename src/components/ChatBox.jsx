@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Markdown from "react-markdown";
-import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import ChatBoxHeader from "./ChatBoxHeader";
 
 let messagesCounter = 0;
-const ChatBox = ({ token }) => {
+const ChatBox = ({ token, conversation_id }) => {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [showHeader, setShowHeader] = useState(true);
@@ -25,7 +25,7 @@ const ChatBox = ({ token }) => {
       setUserInput("");
       setMessages([...messages, huMessage]);
       try {
-        const url = `http://localhost:8080/chat?conversation_id=9&message=${userInputContent}`;
+        const url = `http://localhost:8080/chat?conversation_id=${conversation_id}&message=${userInputContent}`;
         const options = {
           method: "GET",
           headers: {
@@ -66,7 +66,6 @@ const ChatBox = ({ token }) => {
               return;
             }
             // Process the chunk of data
-            console.log(value); // Example: log the chunk of data to console
             stringBuffer += value;
             // Read the next chunk
             setMessages([
@@ -209,6 +208,7 @@ const ChatBox = ({ token }) => {
             padding: "16px 16px 16px 16px",
             border: "1px solid #ccc",
             borderRadius: 4,
+            fontSize: 18,
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
