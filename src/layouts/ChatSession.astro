@@ -1,6 +1,8 @@
 ---
 import ChatBox from "../components/ChatBox.jsx";
 
+export const prerender = false;
+
 let token;
 if (Astro.cookies.has("token")) {
   console.log("Get token from cookies:", Astro.cookies.get("token"));
