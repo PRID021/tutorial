@@ -3,8 +3,9 @@ import { defineConfig } from 'astro/config';
 import rehypeMathJax from 'rehype-mathjax';
 import remarkMath from 'remark-math';
 import { loadEnv } from "vite";
-import netlify from "@astrojs/netlify";
 loadEnv(process.env.NODE_ENV, process.cwd(), "");
+
+import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,6 +23,8 @@ export default defineConfig({
       exclude: ["oslo"]
     }
   },
-  output: "server",
-  adapter: netlify({ edgeMiddleware: true })
+  output: 'hybrid',
+  adapter: vercel({
+    edgeMiddleware: true,
+  }),
 });
