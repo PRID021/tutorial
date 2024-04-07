@@ -27,7 +27,7 @@ const { pageTitle } = Astro.props;
 
   <body>
     <SideBar />
-    <!-- {pageTitle == "Wellcome to my page" && <ChatSession />} -->
+    {pageTitle == "Wellcome to my page" && <ChatSession />}
     <Header />
     <div class="container">
       <div class="page-content">
