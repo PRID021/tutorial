@@ -4,6 +4,8 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import ChatBoxHeader from "./ChatBoxHeader";
 
+const be_url = import.meta.env.SECRET_BE_URL;
+
 let messagesCounter = 0;
 const ChatBox = ({ token, conversation_id }) => {
   const [messages, setMessages] = useState([]);
@@ -25,7 +27,7 @@ const ChatBox = ({ token, conversation_id }) => {
       setUserInput("");
       setMessages([...messages, huMessage]);
       try {
-        const url = `http://localhost:8080/chat?conversation_id=${conversation_id}&message=${userInputContent}`;
+        const url = `${be_url}/chat?conversation_id=${conversation_id}&message=${userInputContent}`;
         const options = {
           method: "GET",
           headers: {
@@ -86,6 +88,7 @@ const ChatBox = ({ token, conversation_id }) => {
       id="chatBox"
       onClick={(e) => {
         e.stopPropagation();
+        console.log(91, e);
       }}
       style={{
         position: "absolute",
