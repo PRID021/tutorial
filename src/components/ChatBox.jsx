@@ -5,80 +5,76 @@ import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import ChatBoxHeader from "./ChatBoxHeader";
 
 let messagesCounter = 0;
-const ChatBox = ({ be_url }) => {
+const be_url = "https://sample-e3whbruliq-el.a.run.app";
+const ChatBox = () => {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [showHeader, setShowHeader] = useState(true);
-  const [accessToken, setAccessToken] = useState(null);
-  const [chatRoomId, setChatRoomId] = useState(null);
-  useEffect(() => {
-    let access_token_data = localStorage.getItem("access_token");
-    let chat_room_id_data = localStorage.getItem("chat_room_id");
-    if (!access_token_data && !chat_room_id_data) {
-      setAccessToken(access_token_data);
-      setChatRoomId(chat_room_id_data);
-    } else {
-      let anonymousLogin = async () => {
-        await fetch(`${be_url}/token`, {
-          method: "POST",
-          headers: {
-            accept: "application/json",
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          body: new URLSearchParams({
-            grant_type: "",
-            username: "admin",
-            password: "secret",
-            scope: "",
-            client_id: "",
-            client_secret: "",
-          }),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            return response.json();
-          })
-          .then((data) => {
-            localStorage.setItem("access_token", data.access_token);
-            setAccessToken(data.access_token);
-            return data;
-          })
-          .catch((error) => {
-            console.error(
-              "There was a problem with your fetch operation:",
-              error
-            );
-          });
-        await fetch(`${be_url}/chat/conversation`, {
-          method: "POST",
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify({}), // Add your request body here if needed
-        })
-          .then(async (response) => {
-            let data = await response.json();
-            localStorage.setItem("chat_room_id", data.id);
-            setChatRoomId(data.id);
-            return data;
-          })
-          .catch((error) => {
-            console.error(
-              "There was a problem with your fetch operation:",
-              error
-            );
-          });
-      };
 
+  const [anonymous, setAnonymous] = useState(null);
+  useEffect(() => {
+    let anonymousLogin = async () => {
+      console.log("start fetch");
+      let token = await fetch(`${be_url}/token`, {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          grant_type: "",
+          username: "admin",
+          password: "secret",
+          scope: "",
+          client_id: "",
+          client_secret: "",
+        }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          return data;
+        })
+        .catch((error) => {
+          console.error(
+            "There was a problem with your fetch operation:",
+            error
+          );
+        });
+      let conversation = await fetch(`${be_url}/chat/conversation`, {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${token.access_token}`,
+        },
+        body: JSON.stringify({}), // Add your request body here if needed
+      })
+        .then(async (response) => {
+          let data = await response.json();
+          return data;
+        })
+        .catch((error) => {
+          console.error(
+            "There was a problem with your fetch operation:",
+            error
+          );
+        });
+      console.log("end fetch");
+      setAnonymous([token.access_token, conversation.id]);
+    };
+    if (!anonymous) {
       anonymousLogin();
     }
   }, []);
 
-  console.log("ChatBox have been rendering");
   const handleSendMessage = (value) => {
+    if (!anonymous) {
+      return;
+    }
     if (showHeader) {
       setShowHeader(false);
     }
@@ -93,13 +89,13 @@ const ChatBox = ({ be_url }) => {
       setUserInput("");
       setMessages([...messages, huMessage]);
       try {
-        console.log("local_access_token", accessToken);
-        const url = `${be_url}/chat?conversation_id=${chatRoomId}&message=${userInputContent}`;
+      
+        const url = `${be_url}/chat?conversation_id=${anonymous[1]}&message=${userInputContent}`;
         const options = {
           method: "GET",
           headers: {
             accept: "application/json",
-            Authorization: `Bearer ${accessToken}`,
+            Authorization: `Bearer ${anonymous[0]}`,
           },
           responseType: "stream",
         };
