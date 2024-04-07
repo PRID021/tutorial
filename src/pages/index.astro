@@ -1,5 +1,5 @@
 ---
-export const prerender = true;
+export const prerender = false;
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "Wellcome to my page";
 
@@ -55,7 +55,6 @@ if (!Astro.cookies.has("conversation")) {
     .catch((error) => {
       console.error("There was a problem with your fetch operation:", error);
     });
-    
 }
 
 // console.log(64, Astro.cookies.get("token"));

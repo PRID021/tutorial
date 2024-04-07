@@ -24,7 +24,7 @@ export default defineConfig({
       exclude: ["oslo"]
     }
   },
-  output: 'hybrid',
+  output: 'server',
   adapter: netlify({
     edgeMiddleware: true
   })

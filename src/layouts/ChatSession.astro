@@ -1,9 +1,6 @@
 ---
 import ChatBox from "../components/ChatBox.jsx";
 
-const user_name = import.meta.env.SECRET_USERNAME;
-const pass_word = import.meta.env.SECRET_PASSWORD;
-
 let token;
 if (Astro.cookies.has("token")) {
   console.log("Get token from cookies:", Astro.cookies.get("token"));
