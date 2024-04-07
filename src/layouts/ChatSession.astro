@@ -1,21 +1,15 @@
 ---
 import ChatBox from "../components/ChatBox.jsx";
 
-export const prerender = false;
+const be_url = import.meta.env.SECRET_BE_URL;
 
-let token;
-if (Astro.cookies.has("token")) {
-  console.log("Get token from cookies:", Astro.cookies.get("token"));
-  token = Astro.cookies.get("token");
-}
-let conversation;
-if (Astro.cookies.has("conversation")) {
-  conversation = Astro.cookies.get("conversation");
-}
 ---
 
 <div id="overlay">
-  <ChatBox token={token} conversation_id={conversation.id} />
+  <ChatBox
+    client:load
+    be_url={be_url}
+  />
 </div>
 
 <style>

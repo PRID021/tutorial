@@ -1,17 +1,83 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import ChatBoxHeader from "./ChatBoxHeader";
 
-const be_url = import.meta.env.SECRET_BE_URL;
-
 let messagesCounter = 0;
-const ChatBox = ({ token, conversation_id }) => {
+const ChatBox = ({ be_url }) => {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [showHeader, setShowHeader] = useState(true);
+  const [accessToken, setAccessToken] = useState(null);
+  const [chatRoomId, setChatRoomId] = useState(null);
+  useEffect(() => {
+    let access_token_data = localStorage.getItem("access_token");
+    let chat_room_id_data = localStorage.getItem("chat_room_id");
+    if (!access_token_data && !chat_room_id_data) {
+      setAccessToken(access_token_data);
+      setChatRoomId(chat_room_id_data);
+    } else {
+      let anonymousLogin = async () => {
+        await fetch(`${be_url}/token`, {
+          method: "POST",
+          headers: {
+            accept: "application/json",
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({
+            grant_type: "",
+            username: "admin",
+            password: "secret",
+            scope: "",
+            client_id: "",
+            client_secret: "",
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            localStorage.setItem("access_token", data.access_token);
+            setAccessToken(data.access_token);
+            return data;
+          })
+          .catch((error) => {
+            console.error(
+              "There was a problem with your fetch operation:",
+              error
+            );
+          });
+        await fetch(`${be_url}/chat/conversation`, {
+          method: "POST",
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({}), // Add your request body here if needed
+        })
+          .then(async (response) => {
+            let data = await response.json();
+            localStorage.setItem("chat_room_id", data.id);
+            setChatRoomId(data.id);
+            return data;
+          })
+          .catch((error) => {
+            console.error(
+              "There was a problem with your fetch operation:",
+              error
+            );
+          });
+      };
 
+      anonymousLogin();
+    }
+  }, []);
+
+  console.log("ChatBox have been rendering");
   const handleSendMessage = (value) => {
     if (showHeader) {
       setShowHeader(false);
@@ -27,12 +93,13 @@ const ChatBox = ({ token, conversation_id }) => {
       setUserInput("");
       setMessages([...messages, huMessage]);
       try {
-        const url = `${be_url}/chat?conversation_id=${conversation_id}&message=${userInputContent}`;
+        console.log("local_access_token", accessToken);
+        const url = `${be_url}/chat?conversation_id=${chatRoomId}&message=${userInputContent}`;
         const options = {
           method: "GET",
           headers: {
             accept: "application/json",
-            Authorization: `Bearer ${token.access_token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
           responseType: "stream",
         };
@@ -88,7 +155,6 @@ const ChatBox = ({ token, conversation_id }) => {
       id="chatBox"
       onClick={(e) => {
         e.stopPropagation();
-        console.log(91, e);
       }}
       style={{
         position: "absolute",
@@ -111,6 +177,7 @@ const ChatBox = ({ token, conversation_id }) => {
       {showHeader && (
         <ChatBoxHeader
           onTapHeader={(value) => {
+            console.log(value);
             handleSendMessage(value);
           }}
         />
