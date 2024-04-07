@@ -20,22 +20,25 @@ export const getStaticPaths = async () => {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+
+export const prerender = true;
 ---
 
 <BaseLayout pageTitle={tag}>
   <p>Posts tagged with {tag}</p>
   <ul>
     {
-      posts.map((post) => (
-        <BlogPost
-          sourceUrl={post.url}
-          title={post.frontmatter.title}
-          description={post.frontmatter.description}
-          image={post.frontmatter.image.url}
-          alt={post.frontmatter.image.alt}
-          pubDate={post.frontmatter.pubDate}
-        />
-      ))
+      posts !== undefined &&
+        posts.map((post) => (
+          <BlogPost
+            sourceUrl={post.url}
+            title={post.frontmatter.title}
+            description={post.frontmatter.description}
+            image={post.frontmatter.image.url}
+            alt={post.frontmatter.image.alt}
+            pubDate={post.frontmatter.pubDate}
+          />
+        ))
     }
   </ul>
 </BaseLayout>

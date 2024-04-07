@@ -4,53 +4,19 @@ import ChatBox from "../components/ChatBox.jsx";
 const user_name = import.meta.env.SECRET_USERNAME;
 const pass_word = import.meta.env.SECRET_PASSWORD;
 
-let token = await fetch("http://localhost:8080/token", {
-  method: "POST",
-  headers: {
-    accept: "application/json",
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
-  body: new URLSearchParams({
-    grant_type: "",
-    username: `${user_name}`,
-    password: `${pass_word}`,
-    scope: "",
-    client_id: "",
-    client_secret: "",
-  }),
-})
-  .then((response) => {
-    if (!response.ok) {
-      console.log(response);
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
-  })
-  .then((data) => {
-    return data;
-  })
-  .catch((error) => {
-    console.error("There was a problem with your fetch operation:", error);
-  });
-
-let conversation = await fetch("http://localhost:8080/chat/conversation", {
-  method: "POST",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${token.access_token}`,
-  },
-  body: JSON.stringify({}), // Add your request body here if needed
-})
-  .then((response) => {
-    return response.json();
-  })
-  .catch((error) => {
-    console.error("There was a problem with your fetch operation:", error);
-  });
+let token;
+if (Astro.cookies.has("token")) {
+  console.log("Get token from cookies:", Astro.cookies.get("token"));
+  token = Astro.cookies.get("token");
+}
+let conversation;
+if (Astro.cookies.has("conversation")) {
+  conversation = Astro.cookies.get("conversation");
+}
 ---
 
 <div id="overlay">
-  <ChatBox client:only token={token} conversation_id={conversation.id} />
+  <ChatBox token={token} conversation_id={conversation.id} />
 </div>
 
 <style>

@@ -3,7 +3,8 @@ import { defineConfig } from 'astro/config';
 import rehypeMathJax from 'rehype-mathjax';
 import remarkMath from 'remark-math';
 import { loadEnv } from "vite";
-const { SECRET_PASSWORD } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
+
+loadEnv(process.env.NODE_ENV, process.cwd(), "");
 // https://astro.build/config
 export default defineConfig({
   markdown: {
@@ -14,5 +15,11 @@ export default defineConfig({
     port: 3000
   },
   site: "https://hoang-pham.netlify.app/",
-  integrations: [react()]
+  integrations: [react()],
+  vite: {
+    optimizeDeps: {
+      exclude: ["oslo"]
+    }
+  },
+  output: "server"
 });
