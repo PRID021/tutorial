@@ -3,8 +3,9 @@ import { defineConfig } from 'astro/config';
 import rehypeMathJax from 'rehype-mathjax';
 import remarkMath from 'remark-math';
 import { loadEnv } from "vite";
-
+import netlify from "@astrojs/netlify";
 loadEnv(process.env.NODE_ENV, process.cwd(), "");
+
 // https://astro.build/config
 export default defineConfig({
   markdown: {
@@ -21,5 +22,6 @@ export default defineConfig({
       exclude: ["oslo"]
     }
   },
-  output: "server"
+  output: "server",
+  adapter: netlify()
 });
