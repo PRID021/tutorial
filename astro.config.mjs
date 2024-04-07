@@ -23,5 +23,5 @@ export default defineConfig({
     }
   },
   output: "server",
-  adapter: netlify()
+  adapter: netlify({ edgeMiddleware: true })
 });
