@@ -4,8 +4,9 @@ import rehypeMathJax from 'rehype-mathjax';
 import remarkMath from 'remark-math';
 import { loadEnv } from "vite";
 loadEnv(process.env.NODE_ENV, process.cwd(), "");
-
 import vercel from '@astrojs/vercel/serverless';
+
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,7 +25,7 @@ export default defineConfig({
     }
   },
   output: 'hybrid',
-  adapter: vercel({
-    edgeMiddleware: true,
-  }),
+  adapter: netlify({
+    edgeMiddleware: true
+  })
 });
