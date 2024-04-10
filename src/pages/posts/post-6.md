@@ -5,7 +5,7 @@ pubDate: 2024-04-08
 description: "The story of the folk who want to build the world from new techniques."
 author: "Hoang Pham"
 image:
-  url: "https://miro.medium.com/v2/resize:fit:828/format:webp/1*GEHnkeViAjxqnxSkpi6lPA.png"
+  url: "../../../public/fast_gpc.png"
   alt: "Image illustration integration of FastAPI and Google Cloud Service."
 tags: ["blogging", "fast-api", "gpc", "docker"]
 ---
