@@ -66,9 +66,9 @@ const ChatBox = () => {
       console.log("end fetch");
       setAnonymous([token.access_token, conversation.id]);
     };
-    if (!anonymous) {
-      anonymousLogin();
-    }
+    // if (!anonymous) {
+    //   anonymousLogin();
+    // }
   }, []);
 
   const handleSendMessage = (value) => {
@@ -88,11 +88,14 @@ const ChatBox = () => {
       };
       setUserInput("");
       setMessages([...messages, huMessage]);
+      const controller = new AbortController();
+
+      const signal = controller.signal;
       try {
-      
         const url = `${be_url}/chat?conversation_id=${anonymous[1]}&message=${userInputContent}`;
         const options = {
           method: "GET",
+          signal: signal,
           headers: {
             accept: "application/json",
             Authorization: `Bearer ${anonymous[0]}`,
@@ -128,6 +131,7 @@ const ChatBox = () => {
           reader.read().then(function processText({ done, value }) {
             if (done) {
               console.log("Stream reading complete.");
+              controller.abort();
               return;
             }
             // Process the chunk of data
@@ -143,6 +147,7 @@ const ChatBox = () => {
         });
       } catch (error) {
         console.error("Error fetching stream:", error);
+        controller.abort();
       }
     }
   };

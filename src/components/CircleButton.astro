@@ -46,25 +46,25 @@
 </style>
 
 <script is:inline>
-  document.addEventListener("astro:page-load", () => {
-    document
-      .getElementById("question-btn")
-      .addEventListener("click", function () {
-        var chatBox = document.getElementById("chatBox");
-        var overlay = document.getElementById("overlay");
-        if (chatBox.style.display === "none") {
-          chatBox.style.display = "flex";
-          overlay.style.display = "flex";
-        } else {
-          chatBox.style.display = "none";
-          overlay.style.display = "none";
-        }
-      });
-    document.getElementById("overlay").addEventListener("click", () => {
-      var chatBox = document.getElementById("chatBox");
-      var overlay = document.getElementById("overlay");
-      chatBox.style.display = "none";
-      overlay.style.display = "none";
-    });
-  });
+  // document.addEventListener("astro:page-load", () => {
+  //   document
+  //     .getElementById("question-btn")
+  //     .addEventListener("click", function () {
+  //       var chatBox = document.getElementById("chatBox");
+  //       var overlay = document.getElementById("overlay");
+  //       if (chatBox.style.display === "none") {
+  //         chatBox.style.display = "flex";
+  //         overlay.style.display = "flex";
+  //       } else {
+  //         chatBox.style.display = "none";
+  //         overlay.style.display = "none";
+  //       }
+  //     });
+  //   document.getElementById("overlay").addEventListener("click", () => {
+  //     var chatBox = document.getElementById("chatBox");
+  //     var overlay = document.getElementById("overlay");
+  //     chatBox.style.display = "none";
+  //     overlay.style.display = "none";
+  //   });
+  // });
 </script>
