@@ -66,9 +66,9 @@ const ChatBox = () => {
       console.log("end fetch");
       setAnonymous([token.access_token, conversation.id]);
     };
-    // if (!anonymous) {
-    //   anonymousLogin();
-    // }
+    if (!anonymous) {
+      anonymousLogin();
+    }
   }, []);
 
   const handleSendMessage = (value) => {
