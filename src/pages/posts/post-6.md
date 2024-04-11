@@ -5,7 +5,7 @@ pubDate: 2024-04-08
 description: "The story of the folk who want to build the world from new techniques."
 author: "Hoang Pham"
 image:
-  url: "../../../public/fast_gpc.png"
+  url: "https://lh3.googleusercontent.com/drive-viewer/AKGpihZPl8Pw95sK_9J92fTRX4nsbysnzIFca4qmUQNQ6xjZqscF0yXh3J834FmAw7Pfv23g8eoZEIq0kiKOC2zdgszoKWaxpfeE7k4=s1600-v0"
   alt: "Image illustration integration of FastAPI and Google Cloud Service."
 tags: ["blogging", "fast-api", "gpc", "docker"]
 ---
@@ -203,7 +203,7 @@ In `chat.py`
 <br>
 
 Working direct with raw LLM require some knowledged about promoting technical specific to each kind of model we use. So Langchain provide a various set of api we can you to simplify that progress, we can reference to
-https://python.langchain.com/docs/get_started/introduction/ known how to install and use, here I will note some keys note that we must notice.
+[Langchain](https://python.langchain.com/docs/get_started/introduction/) known how to install and use, here I will note some keys note that we must notice.
 <br>
 
 Langchain have a set of prompting class that provide an easy way to supply more context to our model, help our model answer the question more accurately. We can also provide addition information to help the model have knowledge specific topic, remember model just known the information when it trained, if you want it known the answers of the question that i have not seen before, you must provide that information to it.
