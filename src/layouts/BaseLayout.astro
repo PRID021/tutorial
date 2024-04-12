@@ -27,12 +27,12 @@ const { pageTitle } = Astro.props;
 
   <body>
     <SideBar />
-    {pageTitle == "Wellcome to my page" && <ChatSession />}
+    {pageTitle == "About Me" && <ChatSession transition:persist />}
     <Header />
     <div class="container">
       <div class="page-content">
         <slot />
-        {pageTitle == "Wellcome to my page" && <CircleButton />}
+        {pageTitle == "About Me" && <CircleButton />}
         <Footer />
       </div>
     </div>

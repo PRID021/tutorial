@@ -3,6 +3,7 @@ import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import ChatBoxHeader from "./ChatBoxHeader";
+import Spinner from "./Spinner/Spinner";
 
 let messagesCounter = 0;
 const be_url = "https://sample-e3whbruliq-el.a.run.app";
@@ -10,74 +11,59 @@ const ChatBox = () => {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [showHeader, setShowHeader] = useState(true);
-
   const [anonymous, setAnonymous] = useState(null);
-  useEffect(() => {
-    let anonymousLogin = async () => {
-      console.log("start fetch");
-      let token = await fetch(`${be_url}/token`, {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          grant_type: "",
-          username: "admin",
-          password: "secret",
-          scope: "",
-          client_id: "",
-          client_secret: "",
-        }),
-      })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          return data;
-        })
-        .catch((error) => {
-          console.error(
-            "There was a problem with your fetch operation:",
-            error
-          );
-        });
-      let conversation = await fetch(`${be_url}/chat/conversation`, {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${token.access_token}`,
-        },
-        body: JSON.stringify({}), // Add your request body here if needed
-      })
-        .then(async (response) => {
-          let data = await response.json();
-          return data;
-        })
-        .catch((error) => {
-          console.error(
-            "There was a problem with your fetch operation:",
-            error
-          );
-        });
-      console.log("end fetch");
-      setAnonymous([token.access_token, conversation.id]);
-    };
-    if (!anonymous) {
-      anonymousLogin();
-    }
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSendMessage = (value) => {
-    if (!anonymous) {
-      return;
-    }
-    if (showHeader) {
-      setShowHeader(false);
-    }
+  const anonymousLogin = async () => {
+    console.log("start fetch");
+    let token = await fetch(`${be_url}/token`, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({
+        grant_type: "",
+        username: "admin",
+        password: "secret",
+        scope: "",
+        client_id: "",
+        client_secret: "",
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => {
+        console.error("There was a problem with your fetch operation:", error);
+      });
+    let conversation = await fetch(`${be_url}/chat/conversation`, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${token.access_token}`,
+      },
+      body: JSON.stringify({}), // Add your request body here if needed
+    })
+      .then(async (response) => {
+        let data = await response.json();
+        return data;
+      })
+      .catch((error) => {
+        console.error("There was a problem with your fetch operation:", error);
+      });
+    console.log("end fetch");
+    setAnonymous([token.access_token, conversation.id]);
+    return [token.access_token, conversation.id];
+  };
+
+  const handleSendMessage = async (value) => {
     let userInputContent = value ?? userInput.trim();
     if (userInputContent !== "") {
       messagesCounter += 1;
@@ -89,16 +75,29 @@ const ChatBox = () => {
       setUserInput("");
       setMessages([...messages, huMessage]);
       const controller = new AbortController();
-
       const signal = controller.signal;
+
+      let connectInfo = anonymous;
+
+      if (!connectInfo) {
+        setIsLoading(true);
+        connectInfo = await anonymousLogin();
+      }
+      if (showHeader) {
+        setShowHeader(false);
+      }
       try {
-        const url = `${be_url}/chat?conversation_id=${anonymous[1]}&message=${userInputContent}`;
+        if (!isLoading) {
+          setIsLoading(true);
+        }
+
+        const url = `${be_url}/chat?conversation_id=${connectInfo[1]}&message=${userInputContent}`;
         const options = {
           method: "GET",
           signal: signal,
           headers: {
             accept: "application/json",
-            Authorization: `Bearer ${anonymous[0]}`,
+            Authorization: `Bearer ${connectInfo[0]}`,
           },
           responseType: "stream",
         };
@@ -106,6 +105,7 @@ const ChatBox = () => {
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
+          setIsLoading(false);
           messagesCounter += 1;
           let stringBuffer = "";
           let aiMessage = {
@@ -261,25 +261,31 @@ const ChatBox = () => {
           </div>
         ))}
       </div>
+
       <div
         style={{
           display: "flex",
           alignItems: "center",
           margin: "8px 8px",
+          flexDirection: "column",
         }}
       >
+        {isLoading && <Spinner></Spinner>}
         <input
+          display="flex"
           type="text"
           id="messageInput"
-          placeholder="Type your message..."
+          placeholder="Type you question..."
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
+          disabled={isLoading}
           style={{
             flex: 1,
             padding: "16px 16px 16px 16px",
             border: "1px solid #ccc",
             borderRadius: 4,
             fontSize: 18,
+            width: "100%",
           }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
