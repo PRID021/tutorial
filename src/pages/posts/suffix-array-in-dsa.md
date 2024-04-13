@@ -10,7 +10,6 @@ image:
 tags: ["blogging", "dsa"]
 ---
 
-#
 
 ## Definition
 
