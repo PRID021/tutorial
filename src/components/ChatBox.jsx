@@ -293,6 +293,17 @@ const ChatBox = () => {
             }
           }}
         />
+        <h6
+          style={{
+            color: "gray",
+            fontStyle: "italic",
+            marginTop: "8px",
+          }}
+        >
+          As connecting to the chatbot for the first time can take from 30
+          seconds to 1 minute, please be patient and AI can make mistakes so
+          consider checking important information.
+        </h6>
       </div>
     </div>
   );
