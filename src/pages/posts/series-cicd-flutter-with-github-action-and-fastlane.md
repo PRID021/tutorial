@@ -33,6 +33,8 @@ For follow this guide you have to install fastlane, you can prefer the document 
 
 For `fastlane` install by using `brew` you can pass this step, but if you want to test in you local you will need to install it in your machine.
 
+<br><br>
+
 ```sh
 
     gem install bundler
@@ -42,18 +44,24 @@ For `fastlane` install by using `brew` you can pass this step, but if you want t
     brew install fastlane
 ```
 
+<br><br>
+
 ### Setup Android
 
 <br>
 
 In you root flutter project navigate to android folder and run: <br>
+<br><br>
 
 ```sh
   fastlane init
 ```
 
+<br><br>
 <br>
 Create `Gemfile` with content: <br>
+
+<br><br>
 
 ```sh
   source "https://rubygems.org"
@@ -61,6 +69,8 @@ Create `Gemfile` with content: <br>
   plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
   eval_gemfile(plugins_path) if File.exist?(plugins_path)
 ```
+
+<br><br>
 
 By using `bundler` you can avoid to missing dependencies in your host runner compare to your local machine.
 <br>
@@ -74,6 +84,8 @@ Suppose you have 2 flavor dev and prod in addition you must setup the build flav
 <br>
 
 From android folder navigate to app folder, select `build.gradle` file under `defaultConfig` section setup build flavor like bellow.<br>
+
+<br><br>
 
 ```gradle
     flavorDimensions "flavors"
@@ -94,7 +106,11 @@ From android folder navigate to app folder, select `build.gradle` file under `de
     }
 ```
 
+<br><br>
+
 If you latter you decide to using gradle remember in `defaultConfig` section there are exits 2 properties that you must be given attention. <br>
+
+<br><br>
 
 ```gradle
     defaultConfig {
@@ -103,6 +119,8 @@ If you latter you decide to using gradle remember in `defaultConfig` section the
         versionName flutterVersionName
     }
 ```
+
+<br><br>
 
 that they will be using to versioning you build artifact, use must manually edit it when using gradle task or you can forget it when using flutter to build your archive file later with <br>
 
@@ -113,12 +131,14 @@ that they will be using to versioning you build artifact, use must manually edit
 ```
 
 <br>
+<br><br>
 
 Now let move on to the main point where you use fastlane api tools to customize you work. In the previous step when you perform `fastlane init` if you following there step you should be asked provide they path of the `json_key_fille`, this file using for authorize you identify to use google services like Firebase Distribution, ensure that you have permission to delivery archive files to Firebase, for how to get `json_key_fille` file go to Firebase documentation for more detail.
 
 <br>
 
 You should see your `Appfile` content look like this: <br>
+<br><br>
 
 ```sh
    json_key_file("./release/google-service-dev.json")
@@ -126,8 +146,11 @@ You should see your `Appfile` content look like this: <br>
 ```
 
 <br>
+<br><br>
 
 You should create each `.env.[suffix]` for each `[suffix]` for each environment, where you can setup specific configure for those. Your `.env.development` may look like this: <br>
+
+<br><br>
 
 ```sh
     FIREBASE_APP_DISTRIBUTION="1:101823576827:android:459910d92e24684284dde"
@@ -139,7 +162,11 @@ You should create each `.env.[suffix]` for each `[suffix]` for each environment,
     APP_URL="https://appdistribution.firebase.dev/i/e3999e2067ea6640"
 ```
 
+<br><br>
+
 Create `Pluginfile` as we must use a third party to help us easy deploy progress to firebase, full fill it with bellow content: <br>
+
+<br><br>
 
 ```
     # Ensure this file is checked in to source control!
@@ -150,6 +177,8 @@ Create `Pluginfile` as we must use a third party to help us easy deploy progress
 ```
 
 In `Fastfile` you can reference to all variable in `.env` file, and use a set of `fastlane` tools like that. <br>
+
+<br><br>
 
 ```sh
 default_platform(:android)
@@ -183,6 +212,8 @@ platform :android do
 end
 ```
 
+<br><br>
+
 <br>
 Be free to customize your workflow as you want. Your fastlane folder should look like: <br>
 
@@ -191,6 +222,8 @@ Be free to customize your workflow as you want. Your fastlane folder should look
 <br><br>
 
 ### With all above setup you can move on to setup github action workflow like this.
+
+<br><br>
 
 ```yml
 name: Build and release dev environment.
@@ -231,9 +264,13 @@ jobs:
           ./release-dev-android.sh
 ```
 
+<br><br>
+
 As for security you can setup all secret key relevant to you project in secret action section of Github Action, above I have move all relevant information for signing code secret using Github Action environment secret keys. <br>
 
 and for brief, i also create an shell script for running a set of cmd for me. <br>
+
+<br><br>
 
 **`release-dev-android.sh`**
 
@@ -247,7 +284,10 @@ and for brief, i also create an shell script for running a set of cmd for me. <b
     cd ..
 ```
 
+<br><br>
 In android folder i create `Makefile` with bellow content: <br>
+
+<br><br>
 
 ```sh
 
@@ -263,6 +303,8 @@ dev:
 prod:
 	bundle exec fastlane build --env production
 	bundle exec fastlane deploy --env production
-
-
 ```
+
+Here is hold preview project structure.
+<br><br>
+<img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihYTs3OEKBHOg2Yr6qE3u11vBCHZQxwcgyDiy6TkwCCMvqEK6rV1MUpF75iH9V3VdLvw1B5BVT9CsYiwa7guhdMyLyWFW5UAfKQ=s1600-rw-v1" width="50%" >
