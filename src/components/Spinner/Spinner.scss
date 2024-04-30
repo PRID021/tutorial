@@ -1,0 +1,32 @@
+.spinner {
+  margin: 8px 8px;
+  width: 70px;
+  display: flex;
+  align-self: start;
+
+  > div {
+    width: 18px;
+    height: 18px;
+    background-color: #333;
+    border-radius: 100%;
+    display: inline-block;
+    animation: bounce 1.4s infinite ease-in-out both;
+
+    &.bounce1 {
+      animation-delay: -0.32s;
+    }
+
+    &.bounce2 {
+      animation-delay: -0.16s;
+    }
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}

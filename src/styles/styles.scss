@@ -1,0 +1,173 @@
+
+@charset "UTF-8";
+ 
+@import'./fonts.scss';
+@import'./variables.scss';
+ 
+
+// Define common styles for all elements
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Define styles for html element
+html {
+  background-color: $background-light;
+  font-family: sans-serif;
+  min-width: 400px;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+
+  &.dark {
+    background-color: $background-dark;
+    color: $text-color-dark;
+  }
+}
+section {
+  height: 100vh;
+  scroll-snap-align: center;
+}
+
+// Define styles for body and .container
+body {
+  font-family: Poppins;
+  .container {
+    margin: auto;
+    // padding: 56px 0 16px 0;
+    width: 100%;
+    max-width: 960px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// Define styles for h1
+h1 {
+  margin: 1rem 0;
+  font-size: 2.5rem;
+}
+
+// Define styles for nav
+nav {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-links {
+    width: 100%;
+    top: 5rem;
+    left: 48px;
+    background-color: $link-color;
+    display: none;
+    margin: 0;
+
+    a {
+      display: block;
+      text-align: center;
+      padding: 10px 0;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 8px;
+
+      &:hover,
+      &:focus {
+        background-color: $link-color;
+      }
+    }
+  }
+
+  .hamburger {
+    padding-right: 20px;
+    cursor: pointer;
+
+    .line {
+      display: block;
+      width: 40px;
+      height: 5px;
+      margin-bottom: 10px;
+      background-color: $link-color;
+    }
+  }
+
+  // Define styles for dark mode
+  .dark {
+    .nav-links a {
+      color: $text-color-dark;
+    }
+  }
+
+  // Define styles for responsive navigation
+  @media screen and (min-width: 636px) {
+    .nav-links {
+      display: block;
+      position: static;
+      width: auto;
+      background: none;
+
+      a {
+        display: inline-block;
+        padding: 8px 16px;
+        margin: 0 32px 0 0;
+      }
+    }
+
+    .hamburger {
+      display: none;
+    }
+  }
+}
+
+// Define styles for skills
+.skill {
+  color: green;
+  font-weight: bold;
+  text-transform: capitalize;
+
+  // Define styles for dark mode
+  .dark & {
+    color: orangered;
+  }
+}
+
+// Define styles for cards
+.Card {
+  background: #000;
+  display: flex;
+
+  .ParagraphStyle {
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  // Define styles for responsive cards
+  @media (max-width: 767px) {
+    .ParagraphStyle {
+      white-space: nowrap;
+    }
+  }
+}
+
+// Define styles for ChatBoxHeader
+.ChatBoxHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+
+  // Define styles for responsive ChatBoxHeader
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+}

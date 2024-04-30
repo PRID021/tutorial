@@ -1,0 +1,156 @@
+---
+export const prerender = true;
+import Resume from "@components/Resume/Resume";
+
+import { getEntry } from "astro:content";
+import Greeting from "@components/Greeting/Greeting";
+const entry = await getEntry("authors", "me");
+const { Content } = await entry.render();
+---
+
+<section>
+  <div class="wrap-bg">
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+  <div class="genreral-infor">
+    <Greeting client:load />
+    <div class="wrap">
+      <div class="shape">
+        <div class="my-image">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </div>
+  <button id="btn-download-cv">Download my resume</button>
+  <Resume client:load />
+  <style lang="scss">
+    button {
+      padding: 12px 24px;
+      font-weight: bold;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 32px;
+      background-color: #d6861e;
+      color: #551b8c;
+    }
+    :global(.dark) button {
+      background-color: #176fc2;
+      color: #fff;
+    }
+
+    button:hover {
+      box-shadow: 0px 0px 10px 0px rgba(41, 37, 37, 0.9);
+    }
+    :global(.dark) button:hover {
+      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.9);
+    }
+
+    .genreral-infor {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-top: 48px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @media screen and (max-width: 600px) {
+      .genreral-infor {
+        flex-direction: column;
+      }
+
+      .my-image {
+        margin: 32px 8px;
+      }
+      #btn-download-cv {
+        margin-top: 64px;
+        margin-bottom: 32px;
+      }
+    }
+    .circular-image {
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      overflow: hidden; /* Ensures the image doesn't overflow outside the circular area */
+    }
+
+    .wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .shape {
+      width: 420px;
+      height: 420px;
+      background: linear-gradient(
+        64.00916346799386deg,
+        rgba(243, 72, 104, 1) 23.44140625%,
+        rgba(242, 71, 104, 1) 23.44140625%,
+        rgba(158, 0, 236, 1) 79.84765625%
+      );
+      animation: wave 4s ease-in-out infinite;
+    }
+
+    .wrap-bg {
+      height: 100vh;
+      width: 100vw;
+      position: fixed;
+    }
+
+    .wrap-bg .shape {
+      width: 300px;
+      height: 300px;
+      position: absolute;
+      bottom: -30px;
+      right: 0;
+      opacity: 0.1;
+      z-index: 1;
+      &:nth-of-type(2) {
+        width: 800px;
+        height: 800px;
+        position: absolute;
+        top: -200px;
+        left: -400px;
+        opacity: 0.1;
+        z-index: -1;
+      }
+    }
+
+    @keyframes wave {
+      0%,
+      100% {
+        border-radius: 70% 30% 72% 28% / 27% 61% 39% 73%;
+      }
+      50% {
+        border-radius: 77% 23% 54% 46% / 40% 38% 62% 60%;
+      }
+    }
+  </style>
+
+  <script>
+    function downloadCVFile() {
+      const fileUrl: string =
+        "https://drive.google.com/uc?export=download&id=1O4hJKynnMVYgDUUz87EBJUGoMOVfeub7";
+      const link: HTMLAnchorElement = document.createElement("a");
+      link.href = fileUrl;
+      link.download = "PHAM-DUC-HOANG.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    let mybutton = document.getElementById(
+      "btn-download-cv"
+    ) as HTMLButtonElement;
+
+    mybutton.addEventListener("click", downloadCV);
+
+    function downloadCV(event) {
+      event.preventDefault();
+      downloadCVFile();
+    }
+  </script>
+</section>

@@ -1,5 +1,4 @@
-import React from "react";
-import "./Spinner.css"; // Assuming you have a CSS file named Spinner.css where you put your CSS
+import "./Spinner.scss"; // Assuming you have a CSS file named Spinner.css where you put your CSS
 
 function Spinner() {
   return (

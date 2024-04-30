@@ -1,4 +1,4 @@
-import "../styles/global.css";
+import "@styles/styles.scss";
 
 const ChatBoxHeaderItem = ({ content, onTap }) => {
   const cardStyle = {

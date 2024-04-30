@@ -1,4 +1,4 @@
-import "../styles/global.css";
+import "@styles/styles.scss";
 import ChatBoxHeaderItem from "./ChatBoxHeaderItem";
 
 const ChatBoxHeader = ({ onTapHeader }) => {

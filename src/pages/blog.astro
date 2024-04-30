@@ -1,6 +1,6 @@
 ---
 export const prerender = true;
-import BlogPost from "../components/BlogPost.astro";
+import BlogPost from "@components/BlogPost.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "Blog";
 const allPosts = await Astro.glob("../pages/posts/*.md");
