@@ -1,9 +1,9 @@
 ---
 export const prerender = true;
-import Resume from "@components/Sections/general/Resume/Resume";
-
+import Resume from "@components/Sections/General/Resume/Resume";
 import { getEntry } from "astro:content";
-import Greeting from "@components/Sections/general/Greeting/Greeting";
+import Greeting from "@components/Sections/General/Greeting/Greeting";
+import FadeIn from "@components/FadeIn/FadeIn";
 const entry = await getEntry("authors", "me");
 const { Content } = await entry.render();
 ---
@@ -13,19 +13,23 @@ const { Content } = await entry.render();
     <div class="shape"></div>
     <div class="shape"></div>
   </div>
-
   <div class="container">
     <div class="genreral-infor">
       <Greeting client:load />
-      <div class="wrap">
-        <div class="shape">
-          <div class="my-image">
-            <Content />
+      <FadeIn client:load x={30}>
+        <div class="wrap">
+          <div class="shape">
+            <div class="my-image">
+              <Content />
+            </div>
           </div>
         </div>
-      </div>
+      </FadeIn>
     </div>
-    <button id="btn-download-cv">Download my resume</button>
+
+    <FadeIn client:load x={-10}>
+      <button id="btn-download-cv">Download my resume</button>
+    </FadeIn>
     <Resume client:load />
   </div>
 

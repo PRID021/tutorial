@@ -1,11 +1,13 @@
 ---
 export const prerender = true;
 import Post from "@components/Sections/blog/Post.astro";
-import General from "@components/Sections/general/General.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import General from "@components/Sections/General/General.astro";
+import ThemeIcon from "@components/ThemeIcon.astro";
 ---
 
 <BaseLayout>
+  <ThemeIcon />
   <General />
   <Post />
 </BaseLayout>
