@@ -1,11 +1,11 @@
 ---
 export const prerender = true;
-import Post from "@components/Sections/blog/Post.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import General from "@components/Sections/General/General.astro";
-import ThemeIcon from "@components/ThemeIcon.astro";
 import Parallax from "@components/Parallax/Parallax";
 import Project from "@components/Sections/project/Project";
+import Slider from "@components/Slider/Slider.astro";
+import Contact from "@components/Sections/Contact/Contact";
 ---
 
 <BaseLayout>
@@ -13,5 +13,6 @@ import Project from "@components/Sections/project/Project";
   <Parallax type="project" client:load />
   <Project client:load />
   <Parallax type="services" client:load />
-  <Post />
+  <Slider />
+  <Contact client:load />
 </BaseLayout>

@@ -14,6 +14,7 @@
     "@astrojs/react": "^3.1.1",
     "@astrojs/rss": "^4.0.5",
     "@astrojs/vercel": "^7.5.2",
+    "@emailjs/browser": "^4.3.3",
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.23",
     "astro": "^4.5.12",

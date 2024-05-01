@@ -69,7 +69,7 @@ const Project = () => {
   });
 
   return (
-    <div class="project">
+    <div className="project">
       <div className="progress">
         <h1>Featured Works</h1>
         <motion.div style={{ scaleX }} className="progressBar"></motion.div>
