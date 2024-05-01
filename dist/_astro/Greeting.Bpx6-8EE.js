@@ -1,0 +1,1 @@
+import{j as e}from"./jsx-runtime.BPj4-Rfu.js";/* empty css                       */import"./index.SSXOyoI7.js";const s=()=>e.jsxs("div",{children:[e.jsx("p",{children:"HELLO, My name is"}),e.jsx("p",{children:e.jsx("b",{children:"Hoang Pham"})}),e.jsx("i",{children:"Software Engineer @ExecutionLab"})]});export{s as default};

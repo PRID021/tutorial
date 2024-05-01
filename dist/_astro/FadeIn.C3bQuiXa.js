@@ -1,0 +1,1 @@
+import{j as o}from"./jsx-runtime.BPj4-Rfu.js";import{m as e}from"./motion.D6v1sI3p.js";import"./index.SSXOyoI7.js";const l=({children:t,x:a,...i})=>{const n={initial:{x:a,y:i.y,opacity:0},animate:{x:0,y:0,opacity:1,transition:{duration:1,staggerChildren:.1,delay:i.delay}}};return o.jsx(e.div,{variants:n,initial:"initial",whileInView:"animate",children:t})};export{l as default};
