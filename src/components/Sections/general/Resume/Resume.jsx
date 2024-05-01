@@ -1,14 +1,8 @@
-import { motion } from "framer-motion";
 import "../Resume/Resume.scss";
 
 export default function Resume() {
   return (
-    <motion.div
-    className="resume"
-      animate={{ opacity: 1, x: 0 }}
-      initial={{ opacity: 0, x: 30 }}
-      transition={{ duration: 1 }}
-    >
+    <div className="resume">
       <p>
         <i>
           <b>
@@ -24,6 +18,6 @@ export default function Resume() {
           </b>
         </i>
       </p>
-    </motion.div>
+    </div>
   );
 }

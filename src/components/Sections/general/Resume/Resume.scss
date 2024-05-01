@@ -2,11 +2,11 @@
 .resume {
     display: flex;
     width: 100%;
+    height: 100%;
     justify-content: flex-end;
-    padding: 16px;
-
+    margin: auto;
     p {
-        max-width: 90ch;
+        max-width: 100ch;
         display: flex;
         text-align: center;
     }
