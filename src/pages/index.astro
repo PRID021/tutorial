@@ -4,10 +4,13 @@ import Post from "@components/Sections/blog/Post.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import General from "@components/Sections/General/General.astro";
 import ThemeIcon from "@components/ThemeIcon.astro";
+import Parallax from "@components/Parallax/Parallax";
 ---
 
 <BaseLayout>
-  <ThemeIcon />
   <General />
+  <Parallax type="services" client:load />
+  <Post />
+  <Parallax type="project" client:load />
   <Post />
 </BaseLayout>
