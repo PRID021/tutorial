@@ -6,8 +6,8 @@ import { useRef } from "react";
 const items = [
   {
     id: 1,
-    title: "React Commerce",
-    img: "https://images.pexels.com/photos/18073372/pexels-photo-18073372/free-photo-of-young-man-sitting-in-a-car-on-a-night-street.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    title: "Sherdtrip",
+    img: "https://lh3.googleusercontent.com/drive-viewer/AKGpihZUohKqBx4S-NSI6RYgBTN8kvAgfe3vBqGXkArc0Q8kfVkGF-FtWcRh-TkV3nJPJeblxzcKUylN7SRBjXIMtkgne7FStIEGTw=s1600-rw-v1",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ab id ad nesciunt quo aut corporis modi? Voluptate, quos sunt dolorum facilis, id eum sequi placeat accusantium saepe eos laborum.",
   },
   {
