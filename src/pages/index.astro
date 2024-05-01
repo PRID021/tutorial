@@ -5,12 +5,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import General from "@components/Sections/General/General.astro";
 import ThemeIcon from "@components/ThemeIcon.astro";
 import Parallax from "@components/Parallax/Parallax";
+import Project from "@components/Sections/project/Project";
 ---
 
 <BaseLayout>
   <General />
-  <Parallax type="services" client:load />
-  <Post />
   <Parallax type="project" client:load />
+  <Project client:load />
+  <Parallax type="services" client:load />
   <Post />
 </BaseLayout>
