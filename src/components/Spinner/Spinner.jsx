@@ -1,4 +1,4 @@
-import "./Spinner.scss"; // Assuming you have a CSS file named Spinner.css where you put your CSS
+import "./spinner.scss"; // Assuming you have a CSS file named Spinner.css where you put your CSS
 
 function Spinner() {
   return (

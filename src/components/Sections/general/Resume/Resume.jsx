@@ -1,4 +1,4 @@
-import "./Resume.scss";
+import "./resume.scss";
 
 export default function Resume() {
   return (
