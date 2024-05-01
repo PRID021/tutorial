@@ -1,13 +1,7 @@
 ---
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import { ViewTransitions } from "astro:transitions";
 import CircleButton from "@components/CircleButton.astro";
-
-import SideBar from "@components/SideBar.astro";
+import { ViewTransitions } from "astro:transitions";
 import ChatSession from "./ChatSession.astro";
-
-const { pageTitle } = Astro.props;
 ---
 
 <html>
@@ -16,44 +10,18 @@ const { pageTitle } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <ViewTransitions />
   </head>
-
   <body>
-    <SideBar />
-    {pageTitle == "About Me" && <ChatSession transition:persist />}
-    <div class="container">
-      <div class="page-content">
-        <slot />
-        <CircleButton />
-      </div>
-    </div>
-
+    <ChatSession transition:persist />
+    <slot />
+    <CircleButton />
     <script>
       import "../scripts/menu.js";
     </script>
-    <style>
-      :global(.dark) #sidebar ul li a {
-        color: white;
-      }
-      .page-content {
-        padding: 16px;
-      }
-      #close-btn {
-        width: 24px;
-        height: 24px;
-        margin: 8px;
-        position: relative;
-        align-self: flex-end;
-      }
-      #close-btn i {
-        color: #000;
-      }
-    </style>
   </body>
 </html>

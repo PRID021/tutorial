@@ -1,14 +1,11 @@
 ---
 export const prerender = true;
-import Footer from "@components/Footer.astro";
+import Post from "@components/Sections/blog/Post.astro";
+import General from "@components/Sections/general/General.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import General from "@components/Sections/General.astro";
-import Post from "@components/Sections/Post.astro";
-import Project from "@components/Sections/Project.astro";
 ---
 
-<BaseLayout pageTitle="About Me">
+<BaseLayout>
   <General />
-  <Project />
   <Post />
 </BaseLayout>

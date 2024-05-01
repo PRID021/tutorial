@@ -1,9 +1,9 @@
 ---
 export const prerender = true;
-import Resume from "@components/Resume/Resume";
+import Resume from "@components/Sections/general/Resume/Resume";
 
 import { getEntry } from "astro:content";
-import Greeting from "@components/Greeting/Greeting";
+import Greeting from "@components/Sections/general/Greeting/Greeting";
 const entry = await getEntry("authors", "me");
 const { Content } = await entry.render();
 ---
@@ -13,20 +13,34 @@ const { Content } = await entry.render();
     <div class="shape"></div>
     <div class="shape"></div>
   </div>
-  <div class="genreral-infor">
-    <Greeting client:load />
-    <div class="wrap">
-      <div class="shape">
-        <div class="my-image">
-          <Content />
+
+  <div class="container">
+    <div class="genreral-infor">
+      <Greeting client:load />
+      <div class="wrap">
+        <div class="shape">
+          <div class="my-image">
+            <Content />
+          </div>
         </div>
       </div>
     </div>
+    <button id="btn-download-cv">Download my resume</button>
+    <Resume client:load />
   </div>
-  <button id="btn-download-cv">Download my resume</button>
-  <Resume client:load />
-  <style lang="scss">
+
+  <style>
+    .container {
+      margin: auto;
+      // padding: 56px 0 16px 0;
+      width: 100%;
+      max-width: 960px;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+    }
     button {
+      max-width: fit-content;
       padding: 12px 24px;
       font-weight: bold;
       border-radius: 5px;
@@ -98,6 +112,7 @@ const { Content } = await entry.render();
       height: 100vh;
       width: 100vw;
       position: fixed;
+      z-index: -999;
     }
 
     .wrap-bg .shape {
@@ -143,7 +158,7 @@ const { Content } = await entry.render();
     }
 
     let mybutton = document.getElementById(
-      "btn-download-cv"
+      "btn-download-cv",
     ) as HTMLButtonElement;
 
     mybutton.addEventListener("click", downloadCV);
