@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const Greeting = () => {
   return (
     <motion.div
-      class="greeting"
+      className="greeting"
       animate={{ opacity: 1, x: 0 }}
       initial={{ opacity: 0, x: -30 }}
       transition={{ duration: 1 }}
