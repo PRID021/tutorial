@@ -4,7 +4,6 @@ import rehypeMathJax from 'rehype-mathjax';
 import remarkMath from 'remark-math';
 import { loadEnv } from "vite";
 loadEnv(process.env.NODE_ENV, process.cwd(), "");
-import vercel from '@astrojs/vercel/serverless';
 
 import netlify from "@astrojs/netlify";
 
