@@ -7,7 +7,7 @@ const items = [
   {
     id: 1,
     title: "Sherdtrip",
-    img: "https://lh3.googleusercontent.com/drive-viewer/AKGpihZUohKqBx4S-NSI6RYgBTN8kvAgfe3vBqGXkArc0Q8kfVkGF-FtWcRh-TkV3nJPJeblxzcKUylN7SRBjXIMtkgne7FStIEGTw=s1600-rw-v1",
+    img: "https://lh3.googleusercontent.com/drive-viewer/AKGpihaDjhRDfXs1PHJi7uxgkkKNaUSGXEOYPqb3Valy3mV_IC0dxkq7pNBX0zu5hzABOx4MOqISRUh7cwQtJB3TqRruRyxZU-1vzw=s1600-rw-v1",
     desc: "Welcome to SherdTrip, where shared adventures become unforgettable experiences! Dive into curated trips, connect with fellow travelers, and create lasting memories together. With safety as our priority, embark on unique journeys while forging new friendships. Receive personalized recommendations and share your travel tales with our vibrant community. Join SherdTrip today and let the journey begin!",
     refUrl: "https://www.sherdtrip.com/landing",
     buttonTitle: "See Demo",
