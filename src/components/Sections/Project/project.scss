@@ -40,9 +40,9 @@
         border-radius: 2cap;
 
         img {
-          width: 100%;
+          max-width: 800px;
           height: 100%;
-          object-fit: contain;
+          object-fit: cover;
           border-radius: 2cap;
         }
       }
