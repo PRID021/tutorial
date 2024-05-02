@@ -2,7 +2,7 @@ import "../Greeting/greeting.scss";
 
 const Greeting = () => {
   return (
-    <div>
+    <div className="greeting">
       <p>HELLO, My name is</p>
       <p>
         <b>Hoang Pham</b>

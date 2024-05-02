@@ -1,92 +1,99 @@
-<section>
-  <div class="container">
-    <div class="slide">
-      <div
-        class="item"
-        style="background-image: url(https://source.unsplash.com/1400x600/?animal,two);"
-      >
-        <div class="content">
-          <div class="name">Rayen</div>
-          <div class="desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-            adipisci doloribus animi.
-          </div>
-          <button>See More</button>
-        </div>
-      </div>
-      <div
-        class="item"
-        style="background-image: url(https://source.unsplash.com/1400x600/?animal,three);"
-      >
-        <div class="content">
-          <div class="name">Rayen</div>
-          <div class="desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-            adipisci doloribus animi.
-          </div>
-          <button>See More</button>
-        </div>
-      </div>
-      <div
-        class="item"
-        style="background-image: url(https://source.unsplash.com/1400x600/?animal,four);"
-      >
-        <div class="content">
-          <div class="name">Rayen</div>
-          <div class="desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-            adipisci doloribus animi.
-          </div>
-          <button>See More</button>
-        </div>
-      </div>
-      <div
-        class="item"
-        style="background-image: url(https://source.unsplash.com/1400x600/?animal,five);"
-      >
-        <div class="content">
-          <div class="name">Rayen</div>
-          <div class="desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-            adipisci doloribus animi.
-          </div>
-          <button>See More</button>
-        </div>
-      </div>
-      <div
-        class="item"
-        style="background-image: url(https://source.unsplash.com/1400x600/?animal,one);"
-      >
-        <div class="content">
-          <div class="name">Rayen</div>
-          <div class="desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-            adipisci doloribus animi.
-          </div>
-          <button>See More</button>
-        </div>
-      </div>
-      <div
-        class="item"
-        style="background-image: url(https://source.unsplash.com/1400x600/?animal,six);"
-      >
-        <div class="content">
-          <div class="name">Rayen</div>
-          <div class="desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-            adipisci doloribus animi.
-          </div>
-          <button>See More</button>
-        </div>
-      </div>
-    </div>
+---
+import FadeScale from "./FadeScale";
+---
 
-    <div class="btns">
-      <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
-      <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+<FadeScale client:load>
+  <section>
+    <div class="container">
+      <div class="slide">
+        <div
+          class="item"
+          style="background-image: url(https://source.unsplash.com/1400x600/?animal,two);"
+        >
+          <div class="content">
+            <div class="name">Rayen</div>
+            <div class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Consectetur adipisci doloribus animi.
+            </div>
+            <button>See More</button>
+          </div>
+        </div>
+        <div
+          class="item"
+          style="background-image: url(https://source.unsplash.com/1400x600/?animal,three);"
+        >
+          <div class="content">
+            <div class="name">Rayen</div>
+            <div class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Consectetur adipisci doloribus animi.
+            </div>
+            <button>See More</button>
+          </div>
+        </div>
+        <div
+          class="item"
+          style="background-image: url(https://source.unsplash.com/1400x600/?animal,four);"
+        >
+          <div class="content">
+            <div class="name">Rayen</div>
+            <div class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Consectetur adipisci doloribus animi.
+            </div>
+            <button>See More</button>
+          </div>
+        </div>
+        <div
+          class="item"
+          style="background-image: url(https://source.unsplash.com/1400x600/?animal,five);"
+        >
+          <div class="content">
+            <div class="name">Rayen</div>
+            <div class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Consectetur adipisci doloribus animi.
+            </div>
+            <button>See More</button>
+          </div>
+        </div>
+        <div
+          class="item"
+          style="background-image: url(https://source.unsplash.com/1400x600/?animal,one);"
+        >
+          <div class="content">
+            <div class="name">Rayen</div>
+            <div class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Consectetur adipisci doloribus animi.
+            </div>
+            <button>See More</button>
+          </div>
+        </div>
+        <div
+          class="item"
+          style="background-image: url(https://source.unsplash.com/1400x600/?animal,six);"
+        >
+          <div class="content">
+            <div class="name">Rayen</div>
+            <div class="desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Consectetur adipisci doloribus animi.
+            </div>
+            <button>See More</button>
+          </div>
+        </div>
+      </div>
+      <FadeScale />
+
+      <div class="btns">
+        <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</FadeScale>
 
 <style>
   .container {
@@ -98,6 +105,7 @@
     transform: translate(-50%, -50%);
     overflow: hidden;
     border-radius: 8px;
+    box-shadow: 0px 5px 20px 5px yellow;
   }
 
   .container .item {

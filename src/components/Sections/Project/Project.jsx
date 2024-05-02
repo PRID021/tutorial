@@ -10,20 +10,23 @@ const items = [
     img: "https://lh3.googleusercontent.com/drive-viewer/AKGpihZUohKqBx4S-NSI6RYgBTN8kvAgfe3vBqGXkArc0Q8kfVkGF-FtWcRh-TkV3nJPJeblxzcKUylN7SRBjXIMtkgne7FStIEGTw=s1600-rw-v1",
     desc: "Welcome to SherdTrip, where shared adventures become unforgettable experiences! Dive into curated trips, connect with fellow travelers, and create lasting memories together. With safety as our priority, embark on unique journeys while forging new friendships. Receive personalized recommendations and share your travel tales with our vibrant community. Join SherdTrip today and let the journey begin!",
     refUrl: "https://www.sherdtrip.com/landing",
+    buttonTitle: "See Demo",
   },
   {
     id: 2,
-    title: "Next.js Blog",
-    img: "https://images.pexels.com/photos/18023772/pexels-photo-18023772/free-photo-of-close-up-of-a-person-holding-a-wristwatch.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ab id ad nesciunt quo aut corporis modi? Voluptate, quos sunt dolorum facilis, id eum sequi placeat accusantium saepe eos laborum.",
-    refUrl: "https://www.sherdtrip.com/landing",
+    title: "Search Vietnamese News",
+    img: "https://lh3.googleusercontent.com/drive-viewer/AKGpiha7Uex5kHpqPlBiB50S45RsSmNKRtsQ6UH-m0xUYYnDn23E0cgp4kZNRW3l1eN1yqAM1ee9osMwstiz7uf4wQXu8fQ7JmrvzL4=s1600-rw-v1",
+    desc: "The Next.js website integrates a classification algorithm to categorize and search Vietnamese news articles efficiently. With seamless rendering and navigation, users benefit from machine learning-driven content classification, enabling quick access to relevant news items and enhancing overall user experience within the Vietnamese language landscape",
+    refUrl: "https://www.timgiuptui.com/",
+    buttonTitle: "See Demo",
   },
   {
     id: 3,
-    title: "Vanilla JS App",
-    img: "https://images.pexels.com/photos/6894528/pexels-photo-6894528.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ab id ad nesciunt quo aut corporis modi? Voluptate, quos sunt dolorum facilis, id eum sequi placeat accusantium saepe eos laborum.",
-    refUrl: "https://www.sherdtrip.com/landing",
+    title: "Ajent Flutter App",
+    img: "https://lh3.googleusercontent.com/drive-viewer/AKGpihY7frqNEXa4gmIi1c66mQsstOS18V0cdaQd2zgcOIjpJlg6SkVk6udQoxR5KKPZyoiJhSB631l1WuHcKopiU3Hya2sl-aUGY30=s2560",
+    desc: "The Flutter app aids students during midterms or finals by connecting them with tutors or teachers. Offering a user-friendly interface, it facilitates tutor discovery, enhancing academic support. With features like scheduling and in-app communication, it streamlines the learning process, providing invaluable assistance to students when they need it most.",
+    refUrl: "https://github.com/princ3od/Ajent",
+    buttonTitle: "See on Github",
   },
   {
     id: 4,
@@ -31,6 +34,7 @@ const items = [
     img: "https://images.pexels.com/photos/18540208/pexels-photo-18540208/free-photo-of-wood-landscape-water-hill.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ab id ad nesciunt quo aut corporis modi? Voluptate, quos sunt dolorum facilis, id eum sequi placeat accusantium saepe eos laborum.",
     refUrl: "https://www.sherdtrip.com/landing",
+    buttonTitle: "See on Github",
   },
 ];
 
@@ -58,7 +62,7 @@ const Single = ({ item }) => {
                 window.location.href = item.refUrl;
               }}
             >
-              See Demo
+              {item.buttonTitle}
             </button>
           </motion.div>
         </div>

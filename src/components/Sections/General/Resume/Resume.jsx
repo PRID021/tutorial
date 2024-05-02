@@ -4,8 +4,7 @@ export default function Resume() {
   return (
     <div className="resume">
       <p>
-        <i>
-          <b>
+          <i>
             A tech aficionado from PhuRieng, born in '92. UIT University honed
             my skills in Dart, Kotlin, Swift, and Python. Two years in mobile
             development taught me the art of crafting user-friendly apps, while
@@ -15,8 +14,7 @@ export default function Resume() {
             thirst for pushing boundaries. With each project, I strive to
             redefine the limits of technology, leaving a lasting impact on the
             world of software engineering.
-          </b>
-        </i>
+          </i>
       </p>
     </div>
   );
