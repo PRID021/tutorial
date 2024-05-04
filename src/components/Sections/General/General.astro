@@ -4,6 +4,7 @@ import Resume from "@components/Sections/General/Resume/Resume";
 import { getEntry } from "astro:content";
 import Greeting from "@components/Sections/General/Greeting/Greeting";
 import FadeIn from "@components/FadeIn/FadeIn";
+import AnimatedAvatar from "@components/AnimatedAvatar/AnimatedAvatar.astro";
 const entry = await getEntry("authors", "me");
 const { Content } = await entry.render();
 ---
@@ -21,11 +22,8 @@ const { Content } = await entry.render();
       </FadeIn>
       <FadeIn client:load x={30}>
         <div class="wrap">
-          <div class="shape">
-            <div class="my-image">
-              <!-- <Content /> -->
-            </div>
-          </div>
+          <div class="shape-img"></div>
+          <div class="background-img"></div>
         </div>
       </FadeIn>
     </div>
@@ -52,7 +50,7 @@ const { Content } = await entry.render();
     }
 
     let mybutton = document.getElementById(
-      "btn-download-cv"
+      "btn-download-cv",
     ) as HTMLButtonElement;
 
     mybutton.addEventListener("click", downloadCV);
@@ -136,6 +134,7 @@ const { Content } = await entry.render();
     display: flex;
     justify-content: center;
     align-items: center;
+    // position: absolute;
   }
 
   .shape {
@@ -147,6 +146,16 @@ const { Content } = await entry.render();
       rgba(242, 71, 104, 1) 23.44140625%,
       rgba(158, 0, 236, 1) 79.84765625%
     );
+
+    animation: wave 4s ease-in-out infinite;
+  }
+
+  .background-img {
+  }
+  .shape-img {
+    width: 420px;
+    height: 420px;
+    background-image: url("https://lh3.googleusercontent.com/drive-viewer/AKGpihYqr_RUolaSCP6AJ2CLWdIyrc_IuQ0ZuoACBKfR72zs7fzBIyMaHAaA2kUmOwxnMfM4SkKf0aSwvs88xz5vJqPXPWq5Zluj0uc=s2560");
     animation: wave 4s ease-in-out infinite;
   }
 
