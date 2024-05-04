@@ -1,12 +1,10 @@
 ---
 export const prerender = true;
 import Resume from "@components/Sections/General/Resume/Resume";
-import { getEntry } from "astro:content";
 import Greeting from "@components/Sections/General/Greeting/Greeting";
 import FadeIn from "@components/FadeIn/FadeIn";
-import AnimatedAvatar from "@components/AnimatedAvatar/AnimatedAvatar.astro";
-const entry = await getEntry("authors", "me");
-const { Content } = await entry.render();
+
+const cvUrl = "";
 ---
 
 <section>
@@ -23,7 +21,6 @@ const { Content } = await entry.render();
       <FadeIn client:load x={30}>
         <div class="wrap">
           <div class="shape-img"></div>
-          <div class="background-img"></div>
         </div>
       </FadeIn>
     </div>
@@ -40,7 +37,8 @@ const { Content } = await entry.render();
   <script>
     function downloadCVFile() {
       const fileUrl: string =
-        "https://drive.google.com/uc?export=download&id=1O4hJKynnMVYgDUUz87EBJUGoMOVfeub7";
+        "https://drive.google.com/uc?export=download&id=1UOJ_crnosfurrS3ulYCLg_zL7zbBGwnt";
+
       const link: HTMLAnchorElement = document.createElement("a");
       link.href = fileUrl;
       link.download = "PHAM-DUC-HOANG.pdf";
@@ -109,6 +107,14 @@ const { Content } = await entry.render();
     justify-content: space-between;
     align-items: center;
   }
+  #btn-download-cv {
+    font-size: 1rem;
+    font-family: inherit;
+    color: #0a0a2a;
+    font-weight: 400;
+    border-radius: 8px;
+  }
+
   @media screen and (max-width: 600px) {
     .genreral-infor {
       flex-direction: column;
@@ -150,13 +156,12 @@ const { Content } = await entry.render();
     animation: wave 4s ease-in-out infinite;
   }
 
-  .background-img {
-  }
   .shape-img {
     width: 420px;
     height: 420px;
     background-image: url("https://lh3.googleusercontent.com/drive-viewer/AKGpihYqr_RUolaSCP6AJ2CLWdIyrc_IuQ0ZuoACBKfR72zs7fzBIyMaHAaA2kUmOwxnMfM4SkKf0aSwvs88xz5vJqPXPWq5Zluj0uc=s2560");
-    animation: wave 4s ease-in-out infinite;
+    animation: avatar-wave 4s ease-in-out infinite;
+    background-position: 30px 0;
   }
 
   .wrap-bg {
@@ -192,6 +197,25 @@ const { Content } = await entry.render();
     }
     50% {
       border-radius: 77% 23% 54% 46% / 40% 38% 62% 60%;
+    }
+  }
+  @keyframes avatar-wave {
+    0%,
+    100% {
+      box-shadow:
+        0 0 10px rgba(255, 0, 0, 0.5),
+        0 0 20px rgba(255, 255, 0, 0.5),
+        0 0 15px rgba(0, 255, 0, 0.5),
+        0 0 10px rgba(0, 0, 255, 0.5);
+      border-radius: 80% 30% 72% 28% / 27% 61% 39% 73%;
+    }
+    50% {
+      border-radius: 77% 23% 54% 46% / 40% 38% 62% 60%;
+      box-shadow:
+        0 0 10px rgba(255, 0, 0, 0.5),
+        0 0 20px rgba(255, 255, 0, 0.5),
+        0 0 15px rgba(0, 255, 0, 0.5),
+        0 0 10px rgba(0, 0, 255, 0.5);
     }
   }
 </style>
