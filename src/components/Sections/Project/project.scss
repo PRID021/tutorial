@@ -1,7 +1,7 @@
 @import "../../../styles/styles.scss";
 
 .project{
-    position: relative;
+  position: relative;
   .progress {
     position: sticky;
     top: 0;
@@ -12,96 +12,105 @@
     font-size: 36px;
 
     @include mobile {
-      padding-top: 10px;
+      padding-top: 8px;
     }
     .progressBar {
       height: 10px;
       background-color: white;
+      border-radius: 8px;
     }
   }
-
-  .container {
+  section{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    @include mobile {
-      padding-top: 140px; /// Recalculate later.
-      height: unset;
-      overflow: unset;
-    }
-
-    .wrapper {
-      max-width: 1366px;
+    width: 100vw;
+    padding: 24px;
+    .container {
+      width: 100%;
       height: 100%;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 50px;
-
+      overflow: hidden;
       @include mobile {
-        flex-direction: column;
+        padding-top: 140px; /// Recalculate later.
+        height: unset;
+        overflow: unset;
       }
-      .imageContainer {
-        flex: 1;
-        height: 50%;
-        border-radius: 2cap;
-        z-index: 1;
-        @include mobile {
-
-          margin-bottom: 56px;
-          max-height: 480px;
-        }
-        
-        img {
-          max-width: 800px;
-          height: 100%;
-          object-fit: cover;
-          @include mobile{
-            height: unset;
-            max-width: 480px;
-            height: 300px;
-          }
-        }
-      }
-
-      .textContainer {
-        flex: 1;
+  
+      .wrapper {
+        margin: auto;
+        gap: 50px;
+        max-width: 1366px;
+        height: 100%;
         display: flex;
-        flex-direction: column;
-        gap: 30px;
-
+        align-items: center;
+        justify-content: center;
         @include mobile {
-          gap: 16px;
-          max-width: 480px;
+          margin: auto;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
         }
-        h2 {
-          font-size: 72px;
-          @include mobile{
-            font-size: 32px;
+        .imageContainer {
+          display: block;
+          margin: 0;
+          padding: 0;
+          height: 50%; 
+          border-radius: 2cap;
+          z-index: 1;
+          @include mobile {
+            margin-bottom: 49px;
+            height: fit-content;
+            border-radius: 2cap;
+          }
+          
+          img {
+            max-width: 800px;
+            height: 100%;
+            object-fit: contain;
+            margin: 0;
+            padding: 0;
+
+            @include mobile{
+              max-width: 480px;
+              height: 300px;
+              object-fit: contain;
+            }
           }
         }
-
-        p {
-          color: rgb(164, 164, 164);
-          font-size: 20px;
-          @include mobile{
-            font-size: 16px;
+  
+        .textContainer {
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+  
+          @include mobile {
+            gap: 16px;
+            max-width: 480px;
           }
-        }
-
-        button {
-          background-color: orange;
-          border: none;
-          border-radius: 10px;
-          padding: 10px;
-          width: 200px;
-          cursor: pointer;
+          h2 {
+            font-size: 72px;
+            @include mobile{
+              font-size: 32px;
+            }
+          }
+  
+          p {
+            color: rgb(164, 164, 164);
+            font-size: 20px;
+            @include mobile{
+              font-size: 16px;
+            }
+          }
+  
+          button {
+            background-color: orange;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            width: 200px;
+            cursor: pointer;
+          }
         }
       }
     }
   }
+
 }

@@ -3,8 +3,6 @@ export const prerender = true;
 import Resume from "@components/Sections/General/Resume/Resume";
 import Greeting from "@components/Sections/General/Greeting/Greeting";
 import FadeIn from "@components/FadeIn/FadeIn";
-
-const cvUrl = "";
 ---
 
 <section>
@@ -13,7 +11,6 @@ const cvUrl = "";
     <div class="shape"></div>
   </div>
   <div class="stars"></div>
-
   <div class="container">
     <div class="genreral-infor">
       <FadeIn client:load x={-30}>
@@ -48,7 +45,7 @@ const cvUrl = "";
     }
 
     let mybutton = document.getElementById(
-      "btn-download-cv"
+      "btn-download-cv",
     ) as HTMLButtonElement;
     mybutton.addEventListener("click", downloadCV);
     function downloadCV(event) {
@@ -205,12 +202,11 @@ const cvUrl = "";
 
   @media screen and (max-width: 600px) {
     .container {
-      margin: 10px 10px;
+      margin-left: 32px;
+      margin-right: 32px;
     }
     .genreral-infor {
       flex-direction: column;
-      height: 100vh;
-      margin-top: 0px;
     }
 
     .my-image {

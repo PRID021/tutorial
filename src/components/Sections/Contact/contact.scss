@@ -4,19 +4,18 @@
 .contact {
   height: 100%;
   max-width: 1366px;
-  margin: auto;
   align-items: center;
+  justify-content: center;
   display: flex;
   gap: 50px;
-
-
+  padding: 24px;
+  margin: auto;
   @include mobile {
-    max-width: 480px;
-    margin: 8px;
+
+    width: fit-content;
     flex-direction: column;
+    justify-content: space-around;
     gap: 0px;
-    justify-content: center;
-    align-items: center;
   }
   .textContainer{
     flex: 1;
@@ -48,6 +47,9 @@
     width: 100%;
     flex: 1;
     position: relative;
+    @include mobile {
+      flex: none;
+    }
     .phoneSvg{
       stroke: orange;
       position: absolute;

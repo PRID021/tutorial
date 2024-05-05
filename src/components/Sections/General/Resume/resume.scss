@@ -8,13 +8,11 @@
     margin: auto;
     p {
         font-size: 20px;
-        
         max-width: 100ch;
         display: flex;
         text-align: center;
     }
     @include mobile {
         display: none;
-        height: 0px;
     }
   }
