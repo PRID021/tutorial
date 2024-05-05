@@ -167,10 +167,17 @@ import FadeScale from "./FadeScale";
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5); /* Text shadow */
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     padding: 10px 20px; /* Padding around text */
+    
   }
 
   .container .item:nth-child(2) .content {
     display: block;
+  }
+
+  @media screen  and (max-width: 600px) {
+    .container .item:nth-child(2) .content {
+    display: none;
+  }
   }
 
   .container .content .name {
@@ -230,6 +237,8 @@ import FadeScale from "./FadeScale";
   .btns button:hover {
     background: #ababab;
   }
+
+
 </style>
 
 <script>

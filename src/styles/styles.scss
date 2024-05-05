@@ -91,17 +91,15 @@ h1 {
   }
 }
 
-
 a {
   text-decoration: none;
   color: inherit;
 }
 
-
-
 @mixin mobile {
   @media (max-width: 738px) {
     @content;
+
   }
 }
 @mixin tablet {

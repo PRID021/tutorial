@@ -13,6 +13,7 @@ const cvUrl = "";
     <div class="shape"></div>
   </div>
   <div class="stars"></div>
+
   <div class="container">
     <div class="genreral-infor">
       <FadeIn client:load x={-30}>
@@ -38,7 +39,6 @@ const cvUrl = "";
     function downloadCVFile() {
       const fileUrl: string =
         "https://drive.google.com/uc?export=download&id=1UOJ_crnosfurrS3ulYCLg_zL7zbBGwnt";
-
       const link: HTMLAnchorElement = document.createElement("a");
       link.href = fileUrl;
       link.download = "PHAM-DUC-HOANG.pdf";
@@ -48,11 +48,9 @@ const cvUrl = "";
     }
 
     let mybutton = document.getElementById(
-      "btn-download-cv",
+      "btn-download-cv"
     ) as HTMLButtonElement;
-
     mybutton.addEventListener("click", downloadCV);
-
     function downloadCV(event) {
       event.preventDefault();
       downloadCVFile();
@@ -115,19 +113,6 @@ const cvUrl = "";
     border-radius: 8px;
   }
 
-  @media screen and (max-width: 600px) {
-    .genreral-infor {
-      flex-direction: column;
-    }
-
-    .my-image {
-      margin: 32px 8px;
-    }
-    #btn-download-cv {
-      margin-top: 64px;
-      margin-bottom: 32px;
-    }
-  }
   .circular-image {
     width: 400px;
     height: 400px;
@@ -140,7 +125,6 @@ const cvUrl = "";
     display: flex;
     justify-content: center;
     align-items: center;
-    // position: absolute;
   }
 
   .shape {
@@ -216,6 +200,29 @@ const cvUrl = "";
         0 0 20px rgba(255, 255, 0, 0.5),
         0 0 15px rgba(0, 255, 0, 0.5),
         0 0 10px rgba(0, 0, 255, 0.5);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .container {
+      margin: 10px 10px;
+    }
+    .genreral-infor {
+      flex-direction: column;
+      height: 100vh;
+      margin-top: 0px;
+    }
+
+    .my-image {
+      margin: 16px 8px;
+    }
+    #btn-download-cv {
+      margin-top: 64px;
+      margin-bottom: 32px;
+    }
+
+    .shape-img {
+      scale: 0.8;
     }
   }
 </style>

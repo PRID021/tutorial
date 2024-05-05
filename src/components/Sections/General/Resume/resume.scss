@@ -1,3 +1,4 @@
+@import  "../../../../styles/styles.scss";
 
 .resume {
     display: flex;
@@ -11,5 +12,9 @@
         max-width: 100ch;
         display: flex;
         text-align: center;
+    }
+    @include mobile {
+        display: none;
+        height: 0px;
     }
   }
